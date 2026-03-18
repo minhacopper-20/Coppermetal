@@ -882,31 +882,31 @@ function buildUI() {
         <div class="day-card-header">
           <div>
             <div class="date-name">${d.label}</div>
-            <div class="date-num">${d.date} · Março 2026</div>
+            <div class="date-num">${d.date} &middot; Mar&ccedil;o 2026</div>
           </div>
-          ${d.special ? `<span class="special-tag">${d.special}</span>` : ''}
+          ${d.special ? '<span class="special-tag">' + d.special + '</span>' : ''}
         </div>
         <div class="menu-grid">${menuRows}</div>
         <div class="choice-section">
           <div class="choice-title">Sua escolha para hoje</div>
           <div class="choice-cards">
             <div class="choice-card p-card" onclick="selectChoice('${key}','P')" id="cc-${key}-P">
-              <div class="check-icon">✓</div>
+              <div class="check-icon">&#10003;</div>
               <div class="choice-letter">P</div>
               <div class="choice-name">Principal</div>
               <div class="choice-prato">${d.principal}</div>
             </div>
             <div class="choice-card o-card" onclick="selectChoice('${key}','O')" id="cc-${key}-O">
-              <div class="check-icon">✓</div>
+              <div class="check-icon">&#10003;</div>
               <div class="choice-letter">O</div>
-              <div class="choice-name">Opção</div>
+              <div class="choice-name">Op&ccedil;&atilde;o</div>
               <div class="choice-prato">${d.opcao}</div>
             </div>
             <div class="choice-card ovo-card" onclick="selectChoice('${key}','OVO')" id="cc-${key}-OVO">
-              <div class="check-icon">✓</div>
-              <div class="choice-letter">🥚</div>
+              <div class="check-icon">&#10003;</div>
+              <div class="choice-letter">&#129370;</div>
               <div class="choice-name">Ovo</div>
-              <div class="choice-desc">Disponível todos os dias</div>
+              <div class="choice-desc">Dispon&iacute;vel todos os dias</div>
             </div>
           </div>
           <button class="btn-confirm" id="btn-${key}" onclick="confirmChoice('${key}')" disabled>Confirmar Escolha</button>
@@ -918,7 +918,7 @@ function buildUI() {
   });
 
   // scroll today tab into view
-  const todayTab = document.querySelector(`[data-key="${todayKey}"]`);
+  const todayTab = document.querySelector('[data-key="' + todayKey + '"]');
   if (todayTab) todayTab.scrollIntoView({ block:'nearest', inline:'center' });
 }
 
@@ -926,7 +926,7 @@ function buildUI() {
 function switchTab(key) {
   document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
-  const tab = document.querySelector(`[data-key="${key}"]`);
+  const tab = document.querySelector('[data-key="' + key + '"]');
   if (tab) tab.classList.add('active');
   const panel = document.getElementById('panel-' + key);
   if (panel) panel.classList.add('active');
@@ -952,13 +952,13 @@ async function confirmChoice(key) {
 
   const btn = document.getElementById('btn-' + key);
   btn.disabled = true;
-  btn.textContent = '⏳ Salvando...';
+  btn.textContent = '&#9203; Salvando...';
 
   await saveEscolha(nome, key, opcao, getPratoLabel(key, opcao));
 
   const msgEl = document.getElementById('msg-' + key);
   msgEl.className = 'confirmed-msg show';
-  msgEl.innerHTML = '✅ Escolha confirmada: <strong>' + opcao + '</strong> &mdash; ' + getPratoLabel(key, opcao);
+  msgEl.innerHTML = '&#9989; Escolha confirmada: <strong>' + opcao + '</strong> &mdash; ' + getPratoLabel(key, opcao);
   btn.textContent = 'Confirmar Escolha';
 }
 
@@ -984,7 +984,7 @@ async function restoreChoices() {
     document.querySelectorAll('#panel-' + e.dia + ' .choice-card').forEach(c => c.classList.remove('selected'));
     card.classList.add('selected');
     const msgEl = document.getElementById('msg-' + e.dia);
-    if (msgEl) { msgEl.className = 'confirmed-msg show'; msgEl.innerHTML = '✅ Escolha confirmada: <strong>' + e.opcao + '</strong> &mdash; ' + getPratoLabel(e.dia, e.opcao); }
+    if (msgEl) { msgEl.className = 'confirmed-msg show'; msgEl.innerHTML = '&#9989; Escolha confirmada: <strong>' + e.opcao + '</strong> &mdash; ' + getPratoLabel(e.dia, e.opcao); }
     const btn = document.getElementById('btn-' + e.dia);
     if (btn) btn.disabled = true;
   });
@@ -1007,7 +1007,7 @@ function openRH() {
 function closeRH() { document.getElementById('rhModal').classList.remove('open'); }
 
 async function renderRH() {
-  document.getElementById('rhViewDia').innerHTML = '<div class="empty-rh">⏳ Carregando...</div>';
+  document.getElementById('rhViewDia').innerHTML = '<div class="empty-rh">&#9203; Carregando...</div>';
   const all = await loadEscolhas();
   const sorted = [...all].sort((a,b) => a.dia.localeCompare(b.dia) || a.nome.localeCompare(b.nome));
 
@@ -1044,7 +1044,7 @@ async function renderRH() {
           <div class="bar-wrap"><span class="bar-label">OVO</span><div class="bar-track"><div class="bar-fill bovo" style="width:${pct(covo)}%"></div></div><span class="bar-count">${covo}</span></div>
         </div>
         <span class="day-row-total">${entries.length} registros</span>
-        <span class="chevron">▼</span>
+        <span class="chevron">&#9660;</span>
       </div>
       <div class="day-row-body" id="drb-${dia}"><table><tbody>${bodyRows}</tbody></table></div>
     </div>`;
@@ -1058,7 +1058,7 @@ async function renderRH() {
   }).join('');
   document.getElementById('rhViewLista').innerHTML = `
     <table class="rh-table">
-      <thead><tr><th>Funcionário</th><th>Dia</th><th>Opção</th><th>Prato</th><th>Registrado em</th></tr></thead>
+      <thead><tr><th>Funcion&aacute;rio</th><th>Dia</th><th>Op&ccedil;&atilde;o</th><th>Prato</th><th>Registrado em</th></tr></thead>
       <tbody>${listRows}</tbody>
     </table>`;
 }
@@ -1092,8 +1092,7 @@ async function exportCSV() {
     '=== RESUMO POR DIA ===',
     'Data,Dia da Semana,Principal (P),Opção (O),Ovo,Total',
     ...rows2
-  ].join('
-');
+  ].join('\n');
 
   const blob = new Blob(['\uFEFF'+csv], {type:'text/csv;charset=utf-8;'});
   const a = document.createElement('a');
