@@ -724,263 +724,65 @@
 </div>
 
 <script>
-// ===================== CARDÁPIO DATA =====================
-const cardapio = {
-  "2026-03-02": {
-    label: "Segunda-feira", date: "02/03",
-    principal: "Filé de Frango Grelhado",
-    opcao: "Hambúrguer Gourmet",
-    base: "Arroz e Feijão Carioca",
-    salada: "Repolho branco e Cenoura ralada",
-    guarnicao: "Macarrão com alho, azeite e brócolis",
-    sobremesa: "Melancia",
-    suco: "Caju"
-  },
-  "2026-03-03": {
-    label: "Terça-feira", date: "03/03",
-    principal: "Parmegiana de Frango",
-    opcao: "Carne moída com Batata",
-    base: "Arroz e Feijão Carioca",
-    salada: "Mix de folhas e Pepino agridoce (gergilim)",
-    guarnicao: "Purê de Batata",
-    sobremesa: "Mousse de Morango",
-    suco: "Acerola"
-  },
-  "2026-03-04": {
-    label: "Quarta-feira", date: "04/03",
-    principal: "Costelinha c/ Barbecue",
-    opcao: "Isca de Fígado Acebolado",
-    base: "Arroz e Feijão Carioca",
-    salada: "Alface Americana c/ Beterraba cozida e cebolinha",
-    guarnicao: "Farofa de Cuscuz",
-    sobremesa: "Tangerina",
-    suco: "Uva"
-  },
-  "2026-03-05": {
-    label: "Quinta-feira", date: "05/03",
-    principal: "Bife de Panela",
-    opcao: "Panqueca de Carne",
-    base: "Arroz e Feijão Carioca",
-    salada: "Repolho, vinagrete de tomate com cebola roxa",
-    guarnicao: "Abóbora assada",
-    sobremesa: "Banana",
-    suco: "Manga"
-  },
-  "2026-03-06": {
-    label: "Sexta-feira", date: "06/03", special: "🌸 Dia das Mulheres",
-    principal: "Lasanha à Bolonhesa",
-    opcao: "Tilápia Empanada",
-    base: "Arroz e Feijão Carioca",
-    salada: "Lentilha c/ Vinagrete e Repolho Roxo",
-    guarnicao: "Creme de Milho",
-    sobremesa: "Bolo de Coco Gelado",
-    suco: "Maracujá"
-  },
-  "2026-03-09": {
-    label: "Segunda-feira", date: "09/03",
-    principal: "Isca de Carne Acebolada",
-    opcao: "Frango Xadrez",
-    base: "Arroz e Feijão Carioca",
-    salada: "Rúcula, beterraba e abacaxi em cubos",
-    guarnicao: "Yakissoba e Chuchu refogado",
-    sobremesa: "Maçã",
-    suco: "Caju"
-  },
-  "2026-03-10": {
-    label: "Terça-feira", date: "10/03",
-    principal: "Frango Cozido com Batata",
-    opcao: "Linguiça Calabresa Acebolada",
-    base: "Arroz e Feijão Carioca",
-    salada: "Rúcula e Alface Americana com pepino",
-    guarnicao: "Macarrão ao Sugo",
-    sobremesa: "Sorvete com Chocotone",
-    suco: "Maracujá"
-  },
-  "2026-03-11": {
-    label: "Quarta-feira", date: "11/03",
-    principal: "Rabada",
-    opcao: "Tulipa Assada",
-    base: "Arroz e Feijão Carioca",
-    salada: "Seleta de Legumes c/ Agrião",
-    guarnicao: "Caponata de Berinjela",
-    sobremesa: "Melancia",
-    suco: "Acerola"
-  },
-  "2026-03-12": {
-    label: "Quinta-feira", date: "12/03",
-    principal: "Strogonoff de Frango",
-    opcao: "Bisteca Grelhada",
-    base: "Arroz e Feijão Carioca",
-    salada: "Acelga ralada, tomate cereja e salsinha",
-    guarnicao: "Polenta frita e batata palha",
-    sobremesa: "Gelatina",
-    suco: "Abacaxi"
-  },
-  "2026-03-13": {
-    label: "Sexta-feira", date: "13/03",
-    principal: "Tilápia ao Molho",
-    opcao: "Rocambole de Carne",
-    base: "Arroz e Feijão Carioca",
-    salada: "Salada de repolho roxo, agrião e cenoura ralada",
-    guarnicao: "Pirão de Peixe",
-    sobremesa: "Pavê de Limão com Biscoito",
-    suco: "Goiaba"
-  },
-  "2026-03-16": {
-    label: "Segunda-feira", date: "16/03",
-    principal: "Picadinho de Carne",
-    opcao: "Frango Supreme",
-    base: "Arroz e Feijão Carioca",
-    salada: "Alface crespa e abobrinha cozida",
-    guarnicao: "Batata Frita",
-    sobremesa: "Melão",
-    suco: "Manga"
-  },
-  "2026-03-17": {
-    label: "Terça-feira", date: "17/03",
-    principal: "Escondidinho de Carne Seca",
-    opcao: "Isca de Frango Empanada",
-    base: "Arroz e Feijão Carioca",
-    salada: "Mix de Folhas c/ Tomate e Cebola",
-    guarnicao: "Couve flor refogado com milho",
-    sobremesa: "Goiabada",
-    suco: "Maracujá"
-  },
-  "2026-03-18": {
-    label: "Quarta-feira", date: "18/03",
-    principal: "Feijoada",
-    opcao: "Ovo",
-    base: "Arroz e Feijão Preto",
-    salada: "Alface lisa e Vinagrete colorido",
-    guarnicao: "Couve Refogada, Farofa e Torresmo",
-    sobremesa: "Laranja",
-    suco: "Limão"
-  },
-  "2026-03-19": {
-    label: "Quinta-feira", date: "19/03",
-    principal: "Maminha Assada com Molho Madeira",
-    opcao: "Carne Moída c/ Legumes",
-    base: "Arroz e Feijão Carioca",
-    salada: "Repolho e beterraba em cubos",
-    guarnicao: "Nhoque ao Sugo",
-    sobremesa: "Banana",
-    suco: "Caju"
-  },
-  "2026-03-20": {
-    label: "Sexta-feira", date: "20/03",
-    principal: "Filé de Tilápia Empanada na Farinha de Rosca",
-    opcao: "Tulipa Assada",
-    base: "Arroz e Feijão Carioca",
-    salada: "Repolho e beterraba ralada",
-    guarnicao: "Batata Sauté",
-    sobremesa: "Pudim de Leite Condensado",
-    suco: "Uva"
-  },
-  "2026-03-23": {
-    label: "Segunda-feira", date: "23/03",
-    principal: "Filé de Frango Grelhado",
-    opcao: "Linguiça Calabresa Acebolada",
-    base: "Arroz e Feijão Preto",
-    salada: "Mix de Folhas, brócolis cozido ao alho e óleo",
-    guarnicao: "Feijão Tropeiro",
-    sobremesa: "Tangerina",
-    suco: "Goiaba"
-  },
-  "2026-03-24": {
-    label: "Terça-feira", date: "24/03",
-    principal: "Bife à Rolê",
-    opcao: "Frango Assado c/ Batata",
-    base: "Arroz e Feijão Carioca",
-    salada: "Repolho roxo, repolho branco, pepino em cubos",
-    guarnicao: "Arroz c/ Lentilha",
-    sobremesa: "Creme de Manga",
-    suco: "Abacaxi"
-  },
-  "2026-03-25": {
-    label: "Quarta-feira", date: "25/03",
-    principal: "Fricassê de Frango",
-    opcao: "Strogonoff de Carne",
-    base: "Arroz e Feijão Carioca",
-    salada: "Agrião c/ tomate e cebola roxa",
-    guarnicao: "Abobrinha refogada e batata palha",
-    sobremesa: "Abacaxi Rodela",
-    suco: "Manga"
-  },
-  "2026-03-26": {
-    label: "Quinta-feira", date: "26/03",
-    principal: "Parmegiana de Carne",
-    opcao: "Hambúrguer Gourmet",
-    base: "Arroz e Feijão Carioca",
-    salada: "Alface lisa, cenoura ralada e cebola",
-    guarnicao: "Batata Assada c/ Cheddar e Bacon",
-    sobremesa: "Melancia",
-    suco: "Caju"
-  },
-  "2026-03-27": {
-    label: "Sexta-feira", date: "27/03",
-    principal: "Filé de Peixe à Portuguesa (gratinado com batata e tomate)",
-    opcao: "Almôndega de Carne ao Molho Sugo",
-    base: "Arroz e Feijão Carioca",
-    salada: "Mix de folhas, azeitona, cebola e tomate cereja",
-    guarnicao: "Macarrão ao Sugo",
-    sobremesa: "Banoffee",
-    suco: "Maracujá"
-  },
-  "2026-03-30": {
-    label: "Segunda-feira", date: "30/03",
-    principal: "Costela c/ Mandioca",
-    opcao: "Lasanha de Berinjela",
-    base: "Arroz e Feijão Carioca",
-    salada: "Tábule / Agrião com Tomate",
-    guarnicao: "Repolho Refogado",
-    sobremesa: "Banana",
-    suco: "Abacaxi"
-  },
-  "2026-03-31": {
-    label: "Terça-feira", date: "31/03",
-    principal: "Isca de Carne",
-    opcao: "Escondidinho de Legumes",
-    base: "Arroz e Feijão Carioca",
-    salada: "Mix de Folhas e Salada de Couve Flor com Milho",
-    guarnicao: "Arroz à Grega",
-    sobremesa: "Doce de Banana",
-    suco: "Caju"
-  }
-};
-
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzYBLG7rbJSV362HoDWlOBbwCu5H4CE_PyOd92uYw7pqPwcrgNVTxDyAya1uiW_n1wi/exec";
 
-// Cache local
+// ===================== CARDÁPIO DATA =====================
+const cardapio = {
+  "2026-03-02": { label:"Segunda-feira", date:"02/03", principal:"Filé de Frango Grelhado", opcao:"Hambúrguer Gourmet", base:"Arroz e Feijão Carioca", salada:"Repolho branco e Cenoura ralada", guarnicao:"Macarrão com alho, azeite e brócolis", sobremesa:"Melancia", suco:"Caju" },
+  "2026-03-03": { label:"Terça-feira", date:"03/03", principal:"Parmegiana de Frango", opcao:"Carne moída com Batata", base:"Arroz e Feijão Carioca", salada:"Mix de folhas e Pepino agridoce (gergilim)", guarnicao:"Purê de Batata", sobremesa:"Mousse de Morango", suco:"Acerola" },
+  "2026-03-04": { label:"Quarta-feira", date:"04/03", principal:"Costelinha c/ Barbecue", opcao:"Isca de Fígado Acebolado", base:"Arroz e Feijão Carioca", salada:"Alface Americana c/ Beterraba cozida e cebolinha", guarnicao:"Farofa de Cuscuz", sobremesa:"Tangerina", suco:"Uva" },
+  "2026-03-05": { label:"Quinta-feira", date:"05/03", principal:"Bife de Panela", opcao:"Panqueca de Carne", base:"Arroz e Feijão Carioca", salada:"Repolho, vinagrete de tomate com cebola roxa", guarnicao:"Abóbora assada", sobremesa:"Banana", suco:"Manga" },
+  "2026-03-06": { label:"Sexta-feira", date:"06/03", special:"🌸 Dia das Mulheres", principal:"Lasanha à Bolonhesa", opcao:"Tilápia Empanada", base:"Arroz e Feijão Carioca", salada:"Lentilha c/ Vinagrete e Repolho Roxo", guarnicao:"Creme de Milho", sobremesa:"Bolo de Coco Gelado", suco:"Maracujá" },
+  "2026-03-09": { label:"Segunda-feira", date:"09/03", principal:"Isca de Carne Acebolada", opcao:"Frango Xadrez", base:"Arroz e Feijão Carioca", salada:"Rúcula, beterraba e abacaxi em cubos", guarnicao:"Yakissoba e Chuchu refogado", sobremesa:"Maçã", suco:"Caju" },
+  "2026-03-10": { label:"Terça-feira", date:"10/03", principal:"Frango Cozido com Batata", opcao:"Linguiça Calabresa Acebolada", base:"Arroz e Feijão Carioca", salada:"Rúcula e Alface Americana com pepino", guarnicao:"Macarrão ao Sugo", sobremesa:"Sorvete com Chocotone", suco:"Maracujá" },
+  "2026-03-11": { label:"Quarta-feira", date:"11/03", principal:"Rabada", opcao:"Tulipa Assada", base:"Arroz e Feijão Carioca", salada:"Seleta de Legumes c/ Agrião", guarnicao:"Caponata de Berinjela", sobremesa:"Melancia", suco:"Acerola" },
+  "2026-03-12": { label:"Quinta-feira", date:"12/03", principal:"Strogonoff de Frango", opcao:"Bisteca Grelhada", base:"Arroz e Feijão Carioca", salada:"Acelga ralada, tomate cereja e salsinha", guarnicao:"Polenta frita e batata palha", sobremesa:"Gelatina", suco:"Abacaxi" },
+  "2026-03-13": { label:"Sexta-feira", date:"13/03", principal:"Tilápia ao Molho", opcao:"Rocambole de Carne", base:"Arroz e Feijão Carioca", salada:"Salada de repolho roxo, agrião e cenoura ralada", guarnicao:"Pirão de Peixe", sobremesa:"Pavê de Limão com Biscoito", suco:"Goiaba" },
+  "2026-03-16": { label:"Segunda-feira", date:"16/03", principal:"Picadinho de Carne", opcao:"Frango Supreme", base:"Arroz e Feijão Carioca", salada:"Alface crespa e abobrinha cozida", guarnicao:"Batata Frita", sobremesa:"Melão", suco:"Manga" },
+  "2026-03-17": { label:"Terça-feira", date:"17/03", principal:"Escondidinho de Carne Seca", opcao:"Isca de Frango Empanada", base:"Arroz e Feijão Carioca", salada:"Mix de Folhas c/ Tomate e Cebola", guarnicao:"Couve flor refogado com milho", sobremesa:"Goiabada", suco:"Maracujá" },
+  "2026-03-18": { label:"Quarta-feira", date:"18/03", principal:"Feijoada", opcao:"Ovo", base:"Arroz e Feijão Preto", salada:"Alface lisa e Vinagrete colorido", guarnicao:"Couve Refogada, Farofa e Torresmo", sobremesa:"Laranja", suco:"Limão" },
+  "2026-03-19": { label:"Quinta-feira", date:"19/03", principal:"Maminha Assada com Molho Madeira", opcao:"Carne Moída c/ Legumes", base:"Arroz e Feijão Carioca", salada:"Repolho e beterraba em cubos", guarnicao:"Nhoque ao Sugo", sobremesa:"Banana", suco:"Caju" },
+  "2026-03-20": { label:"Sexta-feira", date:"20/03", principal:"Filé de Tilápia Empanada na Farinha de Rosca", opcao:"Tulipa Assada", base:"Arroz e Feijão Carioca", salada:"Repolho e beterraba ralada", guarnicao:"Batata Sauté", sobremesa:"Pudim de Leite Condensado", suco:"Uva" },
+  "2026-03-23": { label:"Segunda-feira", date:"23/03", principal:"Filé de Frango Grelhado", opcao:"Linguiça Calabresa Acebolada", base:"Arroz e Feijão Preto", salada:"Mix de Folhas, brócolis cozido ao alho e óleo", guarnicao:"Feijão Tropeiro", sobremesa:"Tangerina", suco:"Goiaba" },
+  "2026-03-24": { label:"Terça-feira", date:"24/03", principal:"Bife à Rolê", opcao:"Frango Assado c/ Batata", base:"Arroz e Feijão Carioca", salada:"Repolho roxo, repolho branco, pepino em cubos", guarnicao:"Arroz c/ Lentilha", sobremesa:"Creme de Manga", suco:"Abacaxi" },
+  "2026-03-25": { label:"Quarta-feira", date:"25/03", principal:"Fricassê de Frango", opcao:"Strogonoff de Carne", base:"Arroz e Feijão Carioca", salada:"Agrião c/ tomate e cebola roxa", guarnicao:"Abobrinha refogada e batata palha", sobremesa:"Abacaxi Rodela", suco:"Manga" },
+  "2026-03-26": { label:"Quinta-feira", date:"26/03", principal:"Parmegiana de Carne", opcao:"Hambúrguer Gourmet", base:"Arroz e Feijão Carioca", salada:"Alface lisa, cenoura ralada e cebola", guarnicao:"Batata Assada c/ Cheddar e Bacon", sobremesa:"Melancia", suco:"Caju" },
+  "2026-03-27": { label:"Sexta-feira", date:"27/03", principal:"Filé de Peixe à Portuguesa (gratinado com batata e tomate)", opcao:"Almôndega de Carne ao Molho Sugo", base:"Arroz e Feijão Carioca", salada:"Mix de folhas, azeitona, cebola e tomate cereja", guarnicao:"Macarrão ao Sugo", sobremesa:"Banoffee", suco:"Maracujá" },
+  "2026-03-30": { label:"Segunda-feira", date:"30/03", principal:"Costela c/ Mandioca", opcao:"Lasanha de Berinjela", base:"Arroz e Feijão Carioca", salada:"Tábule / Agrião com Tomate", guarnicao:"Repolho Refogado", sobremesa:"Banana", suco:"Abacaxi" },
+  "2026-03-31": { label:"Terça-feira", date:"31/03", principal:"Isca de Carne", opcao:"Escondidinho de Legumes", base:"Arroz e Feijão Carioca", salada:"Mix de Folhas e Salada de Couve Flor com Milho", guarnicao:"Arroz à Grega", sobremesa:"Doce de Banana", suco:"Caju" }
+};
+
+// ===================== GOOGLE SHEETS API =====================
 let _cache = null;
 let _cacheTs = 0;
 const CACHE_TTL = 30000;
 
-// JSONP: único jeito de ler resposta de Apps Script corporativo sem CORS
 function fetchJSONP(url) {
   return new Promise((resolve, reject) => {
-    const cbName = '_cb_' + Date.now();
+    const cbName = '_gs_cb_' + Date.now();
     const script = document.createElement('script');
-    const timeout = setTimeout(() => {
-      cleanup();
-      reject(new Error('JSONP timeout'));
-    }, 8000);
+    const timer = setTimeout(() => { cleanup(); reject(new Error('timeout')); }, 8000);
     function cleanup() {
-      clearTimeout(timeout);
+      clearTimeout(timer);
       delete window[cbName];
       if (script.parentNode) script.parentNode.removeChild(script);
     }
     window[cbName] = (data) => { cleanup(); resolve(data); };
-    script.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cbName;
-    script.onerror = () => { cleanup(); reject(new Error('JSONP error')); };
+    script.onerror = () => { cleanup(); reject(new Error('script error')); };
+    script.src = url + '?callback=' + cbName;
     document.head.appendChild(script);
   });
 }
 
-function dataToDia(dataStr) {
-  if (!dataStr) return '';
-  const parts = dataStr.toString().split('/');
-  if (parts.length === 2) return `2026-${parts[1].padStart(2,'0')}-${parts[0].padStart(2,'0')}`;
-  return dataStr;
+// Normaliza qualquer formato de data para "2026-03-09"
+function normalizeDia(val) {
+  if (!val) return '';
+  const s = String(val);
+  // Formato ISO: "2026-03-09T03:00:00.000Z" - pega so os 10 primeiros chars
+  if (s.length > 10 && s.includes('T')) return s.substring(0, 10);
+  // Ja esta no formato correto "2026-03-09"
+  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+  return s;
 }
 
 async function loadEscolhas() {
@@ -990,194 +792,30 @@ async function loadEscolhas() {
     const data = await fetchJSONP(APPS_SCRIPT_URL);
     const arr = Array.isArray(data) ? data : [];
     _cache = arr.map(e => ({
-      nome: e.nome || e['Funcionário'] || '',
-      dia: e.dia || dataToDia(e['Data'] || e.data || ''),
-      opcao: e.opcao || e['Opção'] || '',
-      prato: e.prato || e['Prato'] || '',
-      ts: e.ts || e['Registrado em'] || ''
-    }));
+      nome:  e.nome  || '',
+      dia:   normalizeDia(e.dia   || ''),
+      opcao: e.opcao || '',
+      prato: e.prato || '',
+      ts:    e.ts    || ''
+    })).filter(e => e.nome && e.dia && e.opcao);
     _cacheTs = now;
     return _cache;
   } catch(err) {
-    console.warn('Erro ao carregar escolhas:', err);
+    console.warn('loadEscolhas error:', err);
     return _cache || [];
   }
 }
 
 async function saveEscolha(nome, dia, opcao, prato) {
+  _cache = null;
   const d = cardapio[dia];
-  const payload = {
-    nome, dia,
-    diaSemana: d ? d.label : '',
-    data: d ? d.date : dia,
-    opcao, prato,
-    ts: new Date().toLocaleString('pt-BR')
-  };
-  _cache = null;
+  const payload = { nome, dia, diaSemana: d ? d.label : '', data: d ? d.date : dia, opcao, prato, ts: new Date().toLocaleString('pt-BR') };
   try {
-    // POST com no-cors — não lemos resposta mas o Apps Script recebe
-    await fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(payload)
-    });
-  } catch(err) {
-    console.error('Erro ao salvar escolha:', err);
-  }
+    await fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body: JSON.stringify(payload) });
+  } catch(err) { console.error('saveEscolha error:', err); }
 }
 
-async function clearEscolhas() {
-  _cache = null;
-  alert('Para limpar os dados, acesse a planilha Google Sheets e apague as linhas desejadas.');
-}
-
-// ===================== BUILD UI =====================
-const keys = Object.keys(cardapio).sort();
-const tabsBar = document.getElementById('tabsBar');
-const container = document.getElementById('panelsContainer');
-
-// Today
-const today = new Date();
-const todayKey = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
-
-function getTodayLabel() {
-  const d = cardapio[todayKey];
-  if (d) return `Hoje: ${d.date}`;
-  return "Hoje: fim de semana";
-}
-document.getElementById('todayBadge').textContent = getTodayLabel();
-
-keys.forEach((key, i) => {
-  const d = cardapio[key];
-
-  // Tab
-  const tab = document.createElement('button');
-  tab.className = 'tab-btn' + (key === todayKey ? ' today-tab' : '');
-  tab.textContent = d.date;
-  tab.dataset.key = key;
-  if (key === todayKey || (i === 0 && !keys.includes(todayKey))) tab.classList.add('active');
-  tab.onclick = () => switchTab(key);
-  tabsBar.appendChild(tab);
-
-  // Panel
-  const panel = document.createElement('div');
-  panel.className = 'day-panel' + (key === todayKey || (i === 0 && !keys.includes(todayKey)) ? ' active' : '');
-  panel.id = 'panel-' + key;
-
-  const rows = [
-    ['PRINCIPAL', d.principal],
-    ['OPÇÃO', d.opcao],
-    ['PRATO BASE', d.base],
-    ['SALADA', d.salada],
-    ['GUARNIÇÃO', d.guarnicao],
-    ['SOBREMESA', d.sobremesa],
-    ['SUCO', d.suco],
-  ];
-
-  const rowsHTML = rows.map(([lbl, val]) => `
-    <div class="menu-row">
-      <div class="label-cell">${lbl}</div>
-      <div class="value-cell">${val}</div>
-    </div>
-  `).join('');
-
-  // choices restored async after load
-
-  panel.innerHTML = `
-    <div class="day-card">
-      <div class="day-card-header">
-        <div>
-          <div class="date-name">${d.label}</div>
-          <div class="date-num">${d.date} · Março 2026</div>
-        </div>
-        ${d.special ? `<span class="special-tag">${d.special}</span>` : ''}
-      </div>
-      <div class="menu-grid">${rowsHTML}</div>
-      <div class="choice-section">
-        <div class="choice-title">Sua escolha para hoje</div>
-        <div class="choice-cards">
-          <div class="choice-card p-card" onclick="selectChoice('${key}','P')" id="cc-${key}-P">
-            <div class="check-icon">✓</div>
-            <div class="choice-letter">P</div>
-            <div class="choice-name">Principal</div>
-            <div class="choice-prato">${d.principal}</div>
-          </div>
-          <div class="choice-card o-card" onclick="selectChoice('${key}','O')" id="cc-${key}-O">
-            <div class="check-icon">✓</div>
-            <div class="choice-letter">O</div>
-            <div class="choice-name">Opção</div>
-            <div class="choice-prato">${d.opcao}</div>
-          </div>
-          <div class="choice-card ovo-card" onclick="selectChoice('${key}','OVO')" id="cc-${key}-OVO">
-            <div class="check-icon">✓</div>
-            <div class="choice-letter">🥚</div>
-            <div class="choice-name">Ovo</div>
-            <div class="choice-desc">Disponível todos os dias</div>
-          </div>
-        </div>
-        <button class="btn-confirm" id="btn-${key}" onclick="confirmChoice('${key}')" disabled>Confirmar Escolha</button>
-        <div class="confirmed-msg" id="msg-${key}"></div>
-      </div>
-    </div>
-  `;
-
-  container.appendChild(panel);
-});
-
-// If today is not a weekday in cardapio, show first
-if (!keys.includes(todayKey)) {
-  // already handled above
-}
-
-// Restore confirmed choices on load
-async function restoreChoices() {
-  const all = await loadEscolhas();
-  const nome = document.getElementById('nomeInput').value.trim();
-  all.forEach(e => {
-    const cc = document.getElementById(`cc-${e.dia}-${e.opcao}`);
-    if (cc) {
-      if (e.nome && nome && e.nome.toLowerCase() === nome.toLowerCase()) {
-        document.querySelectorAll(`#panel-${e.dia} .choice-card`).forEach(c => c.classList.remove('selected'));
-        cc.classList.add('selected');
-        const msgEl = document.getElementById(`msg-${e.dia}`);
-        if (msgEl) {
-          msgEl.className = 'confirmed-msg show';
-          msgEl.innerHTML = `✅ Escolha confirmada: <strong>${e.opcao}</strong> — ${getPratoLabel(e.dia, e.opcao)}`;
-        }
-        const btnEl = document.getElementById(`btn-${e.dia}`);
-        if (btnEl) btnEl.disabled = true;
-      }
-    }
-  });
-}
-
-let nomeDebounce = null;
-document.getElementById('nomeInput').addEventListener('input', () => {
-  clearTimeout(nomeDebounce);
-  // Reset UI
-  keys.forEach(key => {
-    document.querySelectorAll(`#panel-${key} .choice-card`).forEach(c => c.classList.remove('selected'));
-    const msgEl = document.getElementById(`msg-${key}`);
-    if (msgEl) { msgEl.className = 'confirmed-msg'; msgEl.innerHTML = ''; }
-    const btnEl = document.getElementById(`btn-${key}`);
-    if (btnEl) btnEl.disabled = true;
-  });
-  nomeDebounce = setTimeout(() => restoreChoices(), 600);
-});
-
-let pendingChoices = {}; // key -> opcao (before confirm)
-
-function selectChoice(key, opcao) {
-  const msgEl = document.getElementById(`msg-${key}`);
-  if (msgEl && msgEl.classList.contains('show')) return; // already confirmed
-
-  document.querySelectorAll(`#panel-${key} .choice-card`).forEach(c => c.classList.remove('selected'));
-  document.getElementById(`cc-${key}-${opcao}`).classList.add('selected');
-  pendingChoices[key] = opcao;
-  document.getElementById(`btn-${key}`).disabled = false;
-}
-
+// ===================== HELPERS =====================
 function getPratoLabel(key, opcao) {
   const d = cardapio[key];
   if (!d) return '';
@@ -1186,232 +824,278 @@ function getPratoLabel(key, opcao) {
   return 'Ovo';
 }
 
-async function confirmChoice(key) {
-  const nome = document.getElementById('nomeInput').value.trim();
-  if (!nome) {
-    alert('Por favor, informe seu nome antes de confirmar a escolha.');
-    document.getElementById('nomeInput').focus();
-    return;
-  }
-  const opcao = pendingChoices[key];
-  if (!opcao) return;
-
-  const btnEl = document.getElementById(`btn-${key}`);
-  btnEl.disabled = true;
-  btnEl.textContent = '⏳ Salvando...';
-
-  await saveEscolha(nome, key, opcao, getPratoLabel(key, opcao));
-
-  const msgEl = document.getElementById(`msg-${key}`);
-  msgEl.className = 'confirmed-msg show';
-  msgEl.innerHTML = `✅ Escolha confirmada: <strong>${opcao}</strong> — ${getPratoLabel(key, opcao)}`;
-  btnEl.textContent = 'Confirmar Escolha';
+function badgeHTML(opcao) {
+  if (opcao === 'P')   return '<span class="badge-p">Principal</span>';
+  if (opcao === 'O')   return '<span class="badge-o">Opção</span>';
+  return '<span class="badge-ovo">Ovo</span>';
 }
 
+function getTodayKey() {
+  const d = new Date();
+  return d.getFullYear() + '-' +
+    String(d.getMonth()+1).padStart(2,'0') + '-' +
+    String(d.getDate()).padStart(2,'0');
+}
+
+// ===================== BUILD UI =====================
+const keys = Object.keys(cardapio).sort();
+let pendingChoices = {};
+let currentView = 'dia';
+
+function buildUI() {
+  const todayKey = getTodayKey();
+  const tabsBar = document.getElementById('tabsBar');
+  const container = document.getElementById('panelsContainer');
+
+  // badge
+  const d0 = cardapio[todayKey];
+  document.getElementById('todayBadge').textContent = d0 ? 'Hoje: ' + d0.date : 'Hoje: folga';
+
+  keys.forEach((key, i) => {
+    const d = cardapio[key];
+    const isActive = key === todayKey || (i === 0 && !cardapio[todayKey]);
+
+    // Tab
+    const tab = document.createElement('button');
+    tab.className = 'tab-btn' + (isActive ? ' active' : '') + (key === todayKey ? ' today-tab' : '');
+    tab.textContent = d.date;
+    tab.dataset.key = key;
+    tab.addEventListener('click', () => switchTab(key));
+    tabsBar.appendChild(tab);
+
+    // Panel
+    const panel = document.createElement('div');
+    panel.className = 'day-panel' + (isActive ? ' active' : '');
+    panel.id = 'panel-' + key;
+
+    const menuRows = [
+      ['PRINCIPAL', d.principal], ['OPÇÃO', d.opcao], ['PRATO BASE', d.base],
+      ['SALADA', d.salada], ['GUARNIÇÃO', d.guarnicao], ['SOBREMESA', d.sobremesa], ['SUCO', d.suco]
+    ].map(([lbl,val]) => `
+      <div class="menu-row">
+        <div class="label-cell">${lbl}</div>
+        <div class="value-cell">${val}</div>
+      </div>`).join('');
+
+    panel.innerHTML = `
+      <div class="day-card">
+        <div class="day-card-header">
+          <div>
+            <div class="date-name">${d.label}</div>
+            <div class="date-num">${d.date} · Março 2026</div>
+          </div>
+          ${d.special ? `<span class="special-tag">${d.special}</span>` : ''}
+        </div>
+        <div class="menu-grid">${menuRows}</div>
+        <div class="choice-section">
+          <div class="choice-title">Sua escolha para hoje</div>
+          <div class="choice-cards">
+            <div class="choice-card p-card" onclick="selectChoice('${key}','P')" id="cc-${key}-P">
+              <div class="check-icon">✓</div>
+              <div class="choice-letter">P</div>
+              <div class="choice-name">Principal</div>
+              <div class="choice-prato">${d.principal}</div>
+            </div>
+            <div class="choice-card o-card" onclick="selectChoice('${key}','O')" id="cc-${key}-O">
+              <div class="check-icon">✓</div>
+              <div class="choice-letter">O</div>
+              <div class="choice-name">Opção</div>
+              <div class="choice-prato">${d.opcao}</div>
+            </div>
+            <div class="choice-card ovo-card" onclick="selectChoice('${key}','OVO')" id="cc-${key}-OVO">
+              <div class="check-icon">✓</div>
+              <div class="choice-letter">🥚</div>
+              <div class="choice-name">Ovo</div>
+              <div class="choice-desc">Disponível todos os dias</div>
+            </div>
+          </div>
+          <button class="btn-confirm" id="btn-${key}" onclick="confirmChoice('${key}')" disabled>Confirmar Escolha</button>
+          <div class="confirmed-msg" id="msg-${key}"></div>
+        </div>
+      </div>`;
+
+    container.appendChild(panel);
+  });
+
+  // scroll today tab into view
+  const todayTab = document.querySelector(`[data-key="${todayKey}"]`);
+  if (todayTab) todayTab.scrollIntoView({ block:'nearest', inline:'center' });
+}
+
+// ===================== TABS =====================
 function switchTab(key) {
   document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
-  document.querySelector(`[data-key="${key}"]`).classList.add('active');
-  document.getElementById('panel-' + key).classList.add('active');
-  restoreChoices();
+  const tab = document.querySelector(`[data-key="${key}"]`);
+  if (tab) tab.classList.add('active');
+  const panel = document.getElementById('panel-' + key);
+  if (panel) panel.classList.add('active');
 }
 
-// ===================== RH PANEL =====================
-let currentView = 'dia';
+// ===================== CHOICE =====================
+function selectChoice(key, opcao) {
+  const msgEl = document.getElementById('msg-' + key);
+  if (msgEl && msgEl.classList.contains('show')) return;
+  document.querySelectorAll('#panel-' + key + ' .choice-card').forEach(c => c.classList.remove('selected'));
+  const card = document.getElementById('cc-' + key + '-' + opcao);
+  if (card) card.classList.add('selected');
+  pendingChoices[key] = opcao;
+  const btn = document.getElementById('btn-' + key);
+  if (btn) btn.disabled = false;
+}
 
+async function confirmChoice(key) {
+  const nome = document.getElementById('nomeInput').value.trim();
+  if (!nome) { alert('Por favor, informe seu nome antes de confirmar.'); document.getElementById('nomeInput').focus(); return; }
+  const opcao = pendingChoices[key];
+  if (!opcao) return;
+
+  const btn = document.getElementById('btn-' + key);
+  btn.disabled = true;
+  btn.textContent = '⏳ Salvando...';
+
+  await saveEscolha(nome, key, opcao, getPratoLabel(key, opcao));
+
+  const msgEl = document.getElementById('msg-' + key);
+  msgEl.className = 'confirmed-msg show';
+  msgEl.innerHTML = '✅ Escolha confirmada: <strong>' + opcao + '</strong> — ' + getPratoLabel(key, opcao);
+  btn.textContent = 'Confirmar Escolha';
+}
+
+// ===================== RESTORE CHOICES =====================
+async function restoreChoices() {
+  const nome = document.getElementById('nomeInput').value.trim();
+  if (!nome) return;
+
+  // Reset UI
+  keys.forEach(key => {
+    document.querySelectorAll('#panel-' + key + ' .choice-card').forEach(c => c.classList.remove('selected'));
+    const msgEl = document.getElementById('msg-' + key);
+    if (msgEl) { msgEl.className = 'confirmed-msg'; msgEl.innerHTML = ''; }
+    const btn = document.getElementById('btn-' + key);
+    if (btn) btn.disabled = true;
+  });
+
+  const all = await loadEscolhas();
+  all.forEach(e => {
+    if (e.nome.toLowerCase() !== nome.toLowerCase()) return;
+    const card = document.getElementById('cc-' + e.dia + '-' + e.opcao);
+    if (!card) return;
+    document.querySelectorAll('#panel-' + e.dia + ' .choice-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    const msgEl = document.getElementById('msg-' + e.dia);
+    if (msgEl) { msgEl.className = 'confirmed-msg show'; msgEl.innerHTML = '✅ Escolha confirmada: <strong>' + e.opcao + '</strong> — ' + getPratoLabel(e.dia, e.opcao); }
+    const btn = document.getElementById('btn-' + e.dia);
+    if (btn) btn.disabled = true;
+  });
+}
+
+let nomeTimer = null;
+// ===================== RH PANEL =====================
 function setView(v) {
   currentView = v;
   document.getElementById('vbDia').classList.toggle('active', v === 'dia');
   document.getElementById('vbLista').classList.toggle('active', v === 'lista');
-  document.getElementById('rhViewDia').style.display = v === 'dia' ? 'block' : 'none';
+  document.getElementById('rhViewDia').style.display   = v === 'dia'   ? 'block' : 'none';
   document.getElementById('rhViewLista').style.display = v === 'lista' ? 'block' : 'none';
 }
 
 function openRH() {
-  renderRH();
   document.getElementById('rhModal').classList.add('open');
+  renderRH();
 }
-function closeRH() {
-  document.getElementById('rhModal').classList.remove('open');
-}
-
-function badgeHTML(opcao) {
-  if (opcao === 'P') return `<span class="badge-p">Principal</span>`;
-  if (opcao === 'O') return `<span class="badge-o">Opção</span>`;
-  return `<span class="badge-ovo">Ovo</span>`;
-}
+function closeRH() { document.getElementById('rhModal').classList.remove('open'); }
 
 async function renderRH() {
-  const diaEl = document.getElementById('rhViewDia');
-  diaEl.innerHTML = '<div class="empty-rh">⏳ Carregando dados...</div>';
+  document.getElementById('rhViewDia').innerHTML = '<div class="empty-rh">⏳ Carregando...</div>';
   const all = await loadEscolhas();
   const sorted = [...all].sort((a,b) => a.dia.localeCompare(b.dia) || a.nome.localeCompare(b.nome));
 
-  const p = all.filter(e => e.opcao === 'P').length;
-  const o = all.filter(e => e.opcao === 'O').length;
-  const ovo = all.filter(e => e.opcao === 'OVO').length;
-  const total = all.length;
+  document.getElementById('statP').textContent   = all.filter(e => e.opcao==='P').length;
+  document.getElementById('statO').textContent   = all.filter(e => e.opcao==='O').length;
+  document.getElementById('statOvo').textContent = all.filter(e => e.opcao==='OVO').length;
 
-  document.getElementById('statP').textContent = p;
-  document.getElementById('statO').textContent = o;
-  document.getElementById('statOvo').textContent = ovo;
-
-  // ---- VIEW: POR DIA ----
   if (!sorted.length) {
-    diaEl.innerHTML = '<div class="empty-rh">Nenhuma escolha registrada ainda.</div>';
-    document.getElementById('rhViewLista').innerHTML = '';
+    document.getElementById('rhViewDia').innerHTML   = '<div class="empty-rh">Nenhuma escolha registrada ainda.</div>';
+    document.getElementById('rhViewLista').innerHTML = '<div class="empty-rh">Nenhuma escolha registrada ainda.</div>';
     return;
   }
 
-  // Group by day
+  // --- POR DIA ---
   const byDay = {};
-  sorted.forEach(e => {
-    if (!byDay[e.dia]) byDay[e.dia] = [];
-    byDay[e.dia].push(e);
-  });
+  sorted.forEach(e => { if (!byDay[e.dia]) byDay[e.dia]=[]; byDay[e.dia].push(e); });
 
-  const dayRowsHTML = Object.keys(byDay).sort().map(dia => {
+  const dayHTML = Object.keys(byDay).sort().map(dia => {
     const entries = byDay[dia];
     const d = cardapio[dia];
-    const dayLabel = d ? `${d.label} · ${d.date}` : dia;
-    const cp = entries.filter(e => e.opcao === 'P').length;
-    const co = entries.filter(e => e.opcao === 'O').length;
-    const covo = entries.filter(e => e.opcao === 'OVO').length;
-    const tot = entries.length;
-    const maxVal = Math.max(cp, co, covo, 1);
-
-    const pct = v => Math.round((v / maxVal) * 100);
-
-    const bodyRows = entries.map(e => `
-      <tr>
-        <td class="col-nome">${e.nome}</td>
-        <td class="col-opt">${badgeHTML(e.opcao)}</td>
-        <td class="col-prato">${e.prato || 'Ovo'}</td>
-      </tr>`).join('');
-
-    return `
-    <div class="day-row" id="dr-${dia}">
-      <div class="day-row-header" onclick="toggleDayRow('${dia}')">
+    const dayLabel = d ? d.label + ' · ' + d.date : dia;
+    const cp = entries.filter(e=>e.opcao==='P').length;
+    const co = entries.filter(e=>e.opcao==='O').length;
+    const covo = entries.filter(e=>e.opcao==='OVO').length;
+    const mx = Math.max(cp,co,covo,1);
+    const pct = v => Math.round(v/mx*100);
+    const bodyRows = entries.map(e => `<tr><td class="col-nome">${e.nome}</td><td>${badgeHTML(e.opcao)}</td><td class="col-prato">${e.prato||'Ovo'}</td></tr>`).join('');
+    return `<div class="day-row" id="dr-${dia}">
+      <div class="day-row-header" onclick="toggleDay('${dia}')">
         <span class="day-row-title">${dayLabel}</span>
         <div class="day-bars">
-          <div class="bar-wrap">
-            <span class="bar-label">P</span>
-            <div class="bar-track"><div class="bar-fill bp" style="width:${pct(cp)}%"></div></div>
-            <span class="bar-count">${cp}</span>
-          </div>
-          <div class="bar-wrap">
-            <span class="bar-label">O</span>
-            <div class="bar-track"><div class="bar-fill bo" style="width:${pct(co)}%"></div></div>
-            <span class="bar-count">${co}</span>
-          </div>
-          <div class="bar-wrap">
-            <span class="bar-label">OVO</span>
-            <div class="bar-track"><div class="bar-fill bovo" style="width:${pct(covo)}%"></div></div>
-            <span class="bar-count">${covo}</span>
-          </div>
+          <div class="bar-wrap"><span class="bar-label">P</span><div class="bar-track"><div class="bar-fill bp" style="width:${pct(cp)}%"></div></div><span class="bar-count">${cp}</span></div>
+          <div class="bar-wrap"><span class="bar-label">O</span><div class="bar-track"><div class="bar-fill bo" style="width:${pct(co)}%"></div></div><span class="bar-count">${co}</span></div>
+          <div class="bar-wrap"><span class="bar-label">OVO</span><div class="bar-track"><div class="bar-fill bovo" style="width:${pct(covo)}%"></div></div><span class="bar-count">${covo}</span></div>
         </div>
-        <span class="day-row-total">${tot} registros</span>
+        <span class="day-row-total">${entries.length} registros</span>
         <span class="chevron">▼</span>
       </div>
-      <div class="day-row-body" id="drb-${dia}">
-        <table>
-          <tbody>${bodyRows}</tbody>
-        </table>
-      </div>
+      <div class="day-row-body" id="drb-${dia}"><table><tbody>${bodyRows}</tbody></table></div>
     </div>`;
   }).join('');
+  document.getElementById('rhViewDia').innerHTML = '<div class="day-breakdown">' + dayHTML + '</div>';
 
-  diaEl.innerHTML = `<div class="day-breakdown">${dayRowsHTML}</div>`;
-
-  // ---- VIEW: LISTA GERAL ----
-  const listaRows = sorted.map(e => {
+  // --- LISTA GERAL ---
+  const listRows = sorted.map(e => {
     const d = cardapio[e.dia];
-    const dayLabel = d ? `${d.label} ${d.date}` : e.dia;
-    return `<tr>
-      <td>${e.nome}</td>
-      <td>${dayLabel}</td>
-      <td>${badgeHTML(e.opcao)}</td>
-      <td style="font-size:0.8rem;color:var(--mid)">${e.prato || 'Ovo'}</td>
-      <td style="font-size:0.75rem;color:var(--mid)">${e.ts}</td>
-    </tr>`;
+    return `<tr><td>${e.nome}</td><td>${d ? d.label+' '+d.date : e.dia}</td><td>${badgeHTML(e.opcao)}</td><td style="font-size:.8rem;color:var(--mid)">${e.prato||'Ovo'}</td><td style="font-size:.75rem;color:var(--mid)">${e.ts}</td></tr>`;
   }).join('');
-
   document.getElementById('rhViewLista').innerHTML = `
     <table class="rh-table">
-      <thead>
-        <tr>
-          <th>Funcionário</th><th>Dia</th><th>Opção</th><th>Prato</th><th>Registrado em</th>
-        </tr>
-      </thead>
-      <tbody>${listaRows}</tbody>
+      <thead><tr><th>Funcionário</th><th>Dia</th><th>Opção</th><th>Prato</th><th>Registrado em</th></tr></thead>
+      <tbody>${listRows}</tbody>
     </table>`;
 }
 
-function toggleDayRow(dia) {
-  const row = document.getElementById('dr-' + dia);
-  const body = document.getElementById('drb-' + dia);
-  row.classList.toggle('open');
-  body.classList.toggle('open');
+function toggleDay(dia) {
+  document.getElementById('dr-'+dia).classList.toggle('open');
+  document.getElementById('drb-'+dia).classList.toggle('open');
 }
 
 async function exportCSV() {
   const all = await loadEscolhas();
   if (!all.length) { alert('Nenhum dado para exportar.'); return; }
-
   const sorted = [...all].sort((a,b) => a.dia.localeCompare(b.dia) || a.nome.localeCompare(b.nome));
 
-  // Group by day for the per-day summary sheet
   const byDay = {};
-  sorted.forEach(e => {
-    if (!byDay[e.dia]) byDay[e.dia] = [];
-    byDay[e.dia].push(e);
-  });
+  sorted.forEach(e => { if (!byDay[e.dia]) byDay[e.dia]=[]; byDay[e.dia].push(e); });
 
-  // Sheet 1: detalhado por funcionário
-  const header1 = ['Funcionário','Dia da Semana','Data','Opção','Prato','Registrado em'];
-  const rows1 = sorted.map(e => {
-    const d = cardapio[e.dia];
-    return [
-      `"${e.nome}"`,
-      `"${d ? d.label : ''}"`,
-      `"${d ? d.date : e.dia}"`,
-      `"${e.opcao}"`,
-      `"${e.prato || 'Ovo'}"`,
-      `"${e.ts}"`
-    ].join(',');
-  });
-
-  // Separator + Sheet 2: resumo por dia
-  const header2 = ['Data','Dia da Semana','Principal (P)','Opção (O)','Ovo','Total'];
+  const rows1 = sorted.map(e => { const d=cardapio[e.dia]; return ['"'+e.nome+'"','"'+(d?d.label:'')+'"','"'+(d?d.date:e.dia)+'"','"'+e.opcao+'"','"'+e.prato+'"','"'+e.ts+'"'].join(','); });
   const rows2 = Object.keys(byDay).sort().map(dia => {
-    const entries = byDay[dia];
-    const d = cardapio[dia];
-    const cp = entries.filter(e => e.opcao === 'P').length;
-    const co = entries.filter(e => e.opcao === 'O').length;
-    const covo = entries.filter(e => e.opcao === 'OVO').length;
-    return [
-      `"${d ? d.date : dia}"`,
-      `"${d ? d.label : ''}"`,
-      cp, co, covo, entries.length
-    ].join(',');
+    const en=byDay[dia]; const d=cardapio[dia];
+    const cp=en.filter(e=>e.opcao==='P').length, co=en.filter(e=>e.opcao==='O').length, covo=en.filter(e=>e.opcao==='OVO').length;
+    return ['"'+(d?d.date:dia)+'"','"'+(d?d.label:'')+'"',cp,co,covo,en.length].join(',');
   });
-
-  const totalP = all.filter(e => e.opcao === 'P').length;
-  const totalO = all.filter(e => e.opcao === 'O').length;
-  const totalOVO = all.filter(e => e.opcao === 'OVO').length;
-  rows2.push(`"TOTAL","",${totalP},${totalO},${totalOVO},${all.length}`);
+  const totalP=all.filter(e=>e.opcao==='P').length, totalO=all.filter(e=>e.opcao==='O').length, totalOVO=all.filter(e=>e.opcao==='OVO').length;
+  rows2.push('"TOTAL","",'+totalP+','+totalO+','+totalOVO+','+all.length);
 
   const csv = [
     '=== DETALHAMENTO POR FUNCIONÁRIO ===',
-    header1.join(','),
-    ...rows1,
-    '',
+    'Funcionário,Dia da Semana,Data,Opção,Prato,Registrado em',
+    ...rows1, '',
     '=== RESUMO POR DIA ===',
-    header2.join(','),
+    'Data,Dia da Semana,Principal (P),Opção (O),Ovo,Total',
     ...rows2
-  ].join('\n');
+  ].join('
+');
 
-  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+  const blob = new Blob(['﻿'+csv], {type:'text/csv;charset=utf-8;'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'cardapio_marco_2026_relatorio.csv';
@@ -1419,19 +1103,19 @@ async function exportCSV() {
 }
 
 async function clearAll() {
-  await clearEscolhas();
   _cache = null;
+  alert('Para limpar os dados, acesse a planilha Google Sheets e apague as linhas desejadas na aba "Respostas".');
   renderRH();
 }
 
-// Activate today's tab on load
-window.addEventListener('DOMContentLoaded', async () => {
-  if (keys.includes(todayKey)) {
-    switchTab(todayKey);
-    const todayTabEl = document.querySelector(`[data-key="${todayKey}"]`);
-    if (todayTabEl) todayTabEl.scrollIntoView({ block: 'nearest', inline: 'center' });
-  }
-  await restoreChoices();
+// ===================== INIT =====================
+document.addEventListener('DOMContentLoaded', () => {
+  buildUI();
+
+  document.getElementById('nomeInput').addEventListener('input', () => {
+    clearTimeout(nomeTimer);
+    nomeTimer = setTimeout(restoreChoices, 700);
+  });
 });
 </script>
 </body>
