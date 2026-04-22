@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cardápio Março 2026 &mdash; Coppermetal</title>
+<title>Cardápio Abril 2026 &mdash; Coppermetal</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -684,7 +684,7 @@
 
 <header>
   <div class="header-left">
-    <h1>🍽 Cardápio de Março</h1>
+    <h1>🍽 Cardápio de Abril</h1>
     <p>Coppermetal · 2026 · Nutricionista Milena Viana CRN3 64452</p>
   </div>
   <div class="header-right">
@@ -739,29 +739,26 @@ const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzYBLG7rbJSV362
 
 // ===================== CARDÁPIO DATA =====================
 const cardapio = {
-  "2026-03-02": { label:"Segunda-feira", date:"02/03", principal:"Filé de Frango Grelhado", opcao:"Hambúrguer Gourmet", base:"Arroz e Feijão Carioca", salada:"Repolho branco e Cenoura ralada", guarnicao:"Macarrão com alho, azeite e brócolis", sobremesa:"Melancia", suco:"Caju" },
-  "2026-03-03": { label:"Terça-feira", date:"03/03", principal:"Parmegiana de Frango", opcao:"Carne moída com Batata", base:"Arroz e Feijão Carioca", salada:"Mix de folhas e Pepino agridoce (gergilim)", guarnicao:"Purê de Batata", sobremesa:"Mousse de Morango", suco:"Acerola" },
-  "2026-03-04": { label:"Quarta-feira", date:"04/03", principal:"Costelinha c/ Barbecue", opcao:"Isca de Fígado Acebolado", base:"Arroz e Feijão Carioca", salada:"Alface Americana c/ Beterraba cozida e cebolinha", guarnicao:"Farofa de Cuscuz", sobremesa:"Tangerina", suco:"Uva" },
-  "2026-03-05": { label:"Quinta-feira", date:"05/03", principal:"Bife de Panela", opcao:"Panqueca de Carne", base:"Arroz e Feijão Carioca", salada:"Repolho, vinagrete de tomate com cebola roxa", guarnicao:"Abóbora assada", sobremesa:"Banana", suco:"Manga" },
-  "2026-03-06": { label:"Sexta-feira", date:"06/03", special:"🌸 Dia das Mulheres", principal:"Lasanha à Bolonhesa", opcao:"Tilápia Empanada", base:"Arroz e Feijão Carioca", salada:"Lentilha c/ Vinagrete e Repolho Roxo", guarnicao:"Creme de Milho", sobremesa:"Bolo de Coco Gelado", suco:"Maracujá" },
-  "2026-03-09": { label:"Segunda-feira", date:"09/03", principal:"Isca de Carne Acebolada", opcao:"Frango Xadrez", base:"Arroz e Feijão Carioca", salada:"Rúcula, beterraba e abacaxi em cubos", guarnicao:"Yakissoba e Chuchu refogado", sobremesa:"Maçã", suco:"Caju" },
-  "2026-03-10": { label:"Terça-feira", date:"10/03", principal:"Frango Cozido com Batata", opcao:"Linguiça Calabresa Acebolada", base:"Arroz e Feijão Carioca", salada:"Rúcula e Alface Americana com pepino", guarnicao:"Macarrão ao Sugo", sobremesa:"Sorvete com Chocotone", suco:"Maracujá" },
-  "2026-03-11": { label:"Quarta-feira", date:"11/03", principal:"Rabada", opcao:"Tulipa Assada", base:"Arroz e Feijão Carioca", salada:"Seleta de Legumes c/ Agrião", guarnicao:"Caponata de Berinjela", sobremesa:"Melancia", suco:"Acerola" },
-  "2026-03-12": { label:"Quinta-feira", date:"12/03", principal:"Strogonoff de Frango", opcao:"Bisteca Grelhada", base:"Arroz e Feijão Carioca", salada:"Acelga ralada, tomate cereja e salsinha", guarnicao:"Polenta frita e batata palha", sobremesa:"Gelatina", suco:"Abacaxi" },
-  "2026-03-13": { label:"Sexta-feira", date:"13/03", principal:"Tilápia ao Molho", opcao:"Rocambole de Carne", base:"Arroz e Feijão Carioca", salada:"Salada de repolho roxo, agrião e cenoura ralada", guarnicao:"Pirão de Peixe", sobremesa:"Pavê de Limão com Biscoito", suco:"Goiaba" },
-  "2026-03-16": { label:"Segunda-feira", date:"16/03", principal:"Picadinho de Carne", opcao:"Frango Supreme", base:"Arroz e Feijão Carioca", salada:"Alface crespa e abobrinha cozida", guarnicao:"Batata Frita", sobremesa:"Melão", suco:"Manga" },
-  "2026-03-17": { label:"Terça-feira", date:"17/03", principal:"Escondidinho de Carne Seca", opcao:"Isca de Frango Empanada", base:"Arroz e Feijão Carioca", salada:"Mix de Folhas c/ Tomate e Cebola", guarnicao:"Couve flor refogado com milho", sobremesa:"Goiabada", suco:"Maracujá" },
-  "2026-03-18": { label:"Quarta-feira", date:"18/03", principal:"Feijoada", opcao:"Ovo", base:"Arroz e Feijão Preto", salada:"Alface lisa e Vinagrete colorido", guarnicao:"Couve Refogada, Farofa e Torresmo", sobremesa:"Laranja", suco:"Limão" },
-  "2026-03-19": { label:"Quinta-feira", date:"19/03", principal:"Maminha Assada com Molho Madeira", opcao:"Carne Moída c/ Legumes", base:"Arroz e Feijão Carioca", salada:"Repolho e beterraba em cubos", guarnicao:"Nhoque ao Sugo", sobremesa:"Banana", suco:"Caju" },
-  "2026-03-20": { label:"Sexta-feira", date:"20/03", principal:"Filé de Tilápia Empanada na Farinha de Rosca", opcao:"Tulipa Assada", base:"Arroz e Feijão Carioca", salada:"Repolho e beterraba ralada", guarnicao:"Batata Sauté", sobremesa:"Pudim de Leite Condensado", suco:"Uva" },
-  "2026-03-23": { label:"Segunda-feira", date:"23/03", principal:"Filé de Frango Grelhado", opcao:"Linguiça Calabresa Acebolada", base:"Arroz e Feijão Preto", salada:"Mix de Folhas, brócolis cozido ao alho e óleo", guarnicao:"Feijão Tropeiro", sobremesa:"Tangerina", suco:"Goiaba" },
-  "2026-03-24": { label:"Terça-feira", date:"24/03", principal:"Bife à Rolê", opcao:"Frango Assado c/ Batata", base:"Arroz e Feijão Carioca", salada:"Repolho roxo, repolho branco, pepino em cubos", guarnicao:"Arroz c/ Lentilha", sobremesa:"Creme de Manga", suco:"Abacaxi" },
-  "2026-03-25": { label:"Quarta-feira", date:"25/03", principal:"Fricassê de Frango", opcao:"Strogonoff de Carne", base:"Arroz e Feijão Carioca", salada:"Agrião c/ tomate e cebola roxa", guarnicao:"Abobrinha refogada e batata palha", sobremesa:"Abacaxi Rodela", suco:"Manga" },
-  "2026-03-26": { label:"Quinta-feira", date:"26/03", principal:"Parmegiana de Carne", opcao:"Hambúrguer Gourmet", base:"Arroz e Feijão Carioca", salada:"Alface lisa, cenoura ralada e cebola", guarnicao:"Batata Assada c/ Cheddar e Bacon", sobremesa:"Melancia", suco:"Caju" },
-  "2026-03-27": { label:"Sexta-feira", date:"27/03", principal:"Filé de Peixe à Portuguesa (gratinado com batata e tomate)", opcao:"Almôndega de Carne ao Molho Sugo", base:"Arroz e Feijão Carioca", salada:"Mix de folhas, azeitona, cebola e tomate cereja", guarnicao:"Macarrão ao Sugo", sobremesa:"Banoffee", suco:"Maracujá" },
-  "2026-03-30": { label:"Segunda-feira", date:"30/03", principal:"Costela c/ Mandioca", opcao:"Lasanha de Berinjela", base:"Arroz e Feijão Carioca", salada:"Tábule / Agrião com Tomate", guarnicao:"Repolho Refogado", sobremesa:"Banana", suco:"Abacaxi" },
-  "2026-03-31": { label:"Terça-feira", date:"31/03", principal:"Isca de Carne", opcao:"Escondidinho de Legumes", base:"Arroz e Feijão Carioca", salada:"Mix de Folhas e Salada de Couve Flor com Milho", guarnicao:"Arroz à Grega", sobremesa:"Doce de Banana", suco:"Caju" }
-};
+  "2026-04-01": { label:"Quarta-feira", date:"01/04", principal:"Feijoada", opcao:"Ovo", base:"Arroz e Feijão Preto", salada:"Alface lisa e Vinagrete colorido", guarnicao:"Couve Refogada, Farofa e Torresmo", sobremesa:"Laranja", suco:"Limão" },
+  "2026-04-02": { label:"Quinta-feira", date:"02/04", principal:"Tilápia cozida com tomate e palmito", opcao:"Bife de Panela", base:"Arroz e Feijão Carioca", salada:"Salada de grão de bico, atum e mix de folhas", guarnicao:"Batata rústica c/ ervas finas", sobremesa:"Pavê de chocolate", suco:"Manga" },
+  "2026-04-06": { label:"Segunda-feira", date:"06/04", principal:"Carne em cubos cozida", opcao:"Bisteca grelhada", base:"Arroz e Feijão Carioca", salada:"Rúcula e beterraba com abacaxi em cubos", guarnicao:"Vagem cozida com cenoura", sobremesa:"Goiaba", suco:"Caju" },
+  "2026-04-07": { label:"Terça-feira", date:"07/04", principal:"Frango empanado", opcao:"Moela cozida", base:"Arroz e Feijão Carioca", salada:"Agrião e Alface roxa com pepino chips", guarnicao:"Macarrão com brócolis e azeite", sobremesa:"Uva com doce de leite", suco:"Uva" },
+  "2026-04-08": { label:"Quarta-feira", date:"08/04", principal:"Dobradinha", opcao:"Filé de frango grelhado", base:"Arroz e Feijão Carioca", salada:"Alface americana e cenoura com abobrinha em tiras", guarnicao:"Couve refogada", sobremesa:"Melão", suco:"Acerola" },
+  "2026-04-09": { label:"Quinta-feira", date:"09/04", principal:"Frango supreme", opcao:"Charuto de repolho com carne moída", base:"Arroz e Feijão Carioca", salada:"Agrião, tomate e cebola roxa", guarnicao:"Legumes Assados", sobremesa:"Ameixa", suco:"Goiaba" },
+  "2026-04-10": { label:"Sexta-feira", date:"10/04", principal:"Peixe Empanado", opcao:"Coxinha da Asa cozida com Molho de tomate", base:"Arroz e Feijão Carioca", salada:"Salada de macarrão", guarnicao:"Abóbora assada", sobremesa:"Merengue de morango", suco:"Maracujá" },
+  "2026-04-13": { label:"Segunda-feira", date:"13/04", principal:"Fraldinha assada com molho de cogumelos", opcao:"Strogonoff de carne", base:"Arroz e Feijão Carioca", salada:"Alface crespa e lentilha cozida com cebola roxa", guarnicao:"Purê de mandioquinha e batata palha", sobremesa:"Melancia", suco:"Manga" },
+  "2026-04-14": { label:"Terça-feira", date:"14/04", principal:"Fricassê de frango", opcao:"Bife a rolê", base:"Arroz e Feijão Carioca", salada:"Mix de Folhas c/ berinjela assada com uva passa e azeitona preta", guarnicao:"Brócolis ao alho e óleo", sobremesa:"Mousse de maracujá", suco:"Maracujá" },
+  "2026-04-15": { label:"Quarta-feira", date:"15/04", principal:"Costelinha Assada c/ barbecue", opcao:"Omelete c/ queijo e tomate", base:"Arroz e Feijão Carioca", salada:"Alface Americana c/ salada de quinoa com tomate", guarnicao:"Abóbora refogada", sobremesa:"Tangerina", suco:"Goiaba" },
+  "2026-04-16": { label:"Quinta-feira", date:"16/04", principal:"Músculo cozido com Inhame", opcao:"Sobrecoxa assada c/ batata", base:"Arroz e Feijão Carioca", salada:"Rúcula + Salada de repolho ralado com cenoura e maionese", guarnicao:"Macarrão parafuso ao molho sugo", sobremesa:"Banana", suco:"Caju" },
+  "2026-04-17": { label:"Sexta-feira", date:"17/04", principal:"Filé de peixe cozido (cação ou tilápia)", opcao:"Isca de carne acebolada", base:"Arroz e Feijão Carioca", salada:"Alface, couve, chuchu em cubos (finalizar com cebolinha)", guarnicao:"Couve flor gratinada", sobremesa:"Tortinha de maçã", suco:"Uva" },
+  "2026-04-22": { label:"Quarta-feira", date:"22/04", principal:"Escondidinho de frango", opcao:"Linguiça calabresa acebolada", base:"Arroz e Feijão Carioca", salada:"Agrião c/ manga em cubos + brócolis refogado", guarnicao:"Abobrinha à pizzaiolo", sobremesa:"Abacaxi rodela", suco:"Manga" },
+  "2026-04-23": { label:"Quinta-feira", date:"23/04", principal:"Panqueca de carne c/ queijo", opcao:"Isca de fígado acebolado", base:"Arroz e Feijão Preto", salada:"Repolho roxo, repolho branco, beterraba cozida em cubos", guarnicao:"Batata frita", sobremesa:"Maçã", suco:"Caju" },
+  "2026-04-24": { label:"Sexta-feira", date:"24/04", principal:"Isca de peixe empanado", opcao:"Lasanha bolonhesa", base:"Arroz e Feijão Carioca", salada:"Mix de folhas, azeitona, cebola e pepino em rodela", guarnicao:"Arroz à grega", sobremesa:"Bolo de prestígio", suco:"Maracujá" },
+  "2026-04-27": { label:"Segunda-feira", date:"27/04", principal:"Carne Moída com Legumes", opcao:"Filé de Frango empanado", base:"Arroz e Feijão Carioca", salada:"Mix de folhas e beterraba ralada (finalizar com gergelim)", guarnicao:"Macarrão ao sugo", sobremesa:"Maçã", suco:"Acerola" },
+  "2026-04-28": { label:"Terça-feira", date:"28/04", principal:"Filé de frango à pizzaiolo", opcao:"Bife de panela", base:"Arroz e Feijão Carioca", salada:"Salada de escarola refogada e tomate cereja (itens separados)", guarnicao:"Mandioca frita", sobremesa:"Delícia de abacaxi", suco:"Laranja" },
+  "2026-04-29": { label:"Quarta-feira", date:"29/04", principal:"Feijoada", opcao:"Ovo", base:"Arroz e Feijão Preto", salada:"Alface lisa e Vinagrete colorido", guarnicao:"Couve Refogada, Farofa e Torresmo", sobremesa:"Laranja", suco:"Limão" },
+  "2026-04-30": { label:"Quinta-feira", date:"30/04", principal:"Strogonoff de frango", opcao:"Picadinho", base:"Arroz e Feijão Carioca", salada:"Couve flor refogado e cenoura em cubos", guarnicao:"Farofa de cebola e Batata Palha", sobremesa:"Melancia", suco:"Caju" }
+}
 
 // ===================== GOOGLE SHEETS API =====================
 let _cache = null;
@@ -898,7 +895,7 @@ function buildUI() {
         <div class="day-card-header">
           <div>
             <div class="date-name">${d.label}</div>
-            <div class="date-num">${d.date} &middot; Mar&ccedil;o 2026</div>
+            <div class="date-num">${d.date} &middot; Abril 2026</div>
           </div>
           ${d.special ? '<span class="special-tag">' + d.special + '</span>' : ''}
         </div>
@@ -1114,7 +1111,7 @@ async function exportCSV() {
   const blob = new Blob(['\uFEFF'+csv], {type:'text/csv;charset=utf-8;'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'cardapio_marco_2026_relatorio.csv';
+  a.download = 'cardapio_abril_2026_relatorio.csv';
   a.click();
 }
 
