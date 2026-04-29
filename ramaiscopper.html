@@ -391,5 +391,31 @@
   <!-- REFEITÓRIO -->
 <div class="dept-card" data-dept="Refeitorio">
     <div class="dept-header"><span>Refeitório</span><span>R</span><span>L. Direta</span></div>
-    <div class="contact-row"><span class="contact-name">Cozinha</span><span class="ramal">8358</span><a class="direct" href="tel:554758358">5547-8358</a></div>
-  </div>
+    <div class="contact-row"><span class="contact-name">Cozinha</span><span class="ramal">8358</span><a class="direct" href="tel:554758358">5547-8358</a>
+</div>
+
+<footer>Copper · Diretório de Ramais Interno</footer>
+
+<script>
+function filterContacts(q) {
+  q = q.toLowerCase().trim();
+  document.querySelectorAll('.dept-card').forEach(card => {
+    if (!q) { card.classList.remove('hidden'); card.querySelectorAll('.contact-row').forEach(r => r.classList.remove('hidden')); return; }
+    const dept = card.dataset.dept.toLowerCase();
+    const rows = card.querySelectorAll('.contact-row');
+    let anyVisible = dept.includes(q);
+    rows.forEach(row => {
+      const name = row.querySelector('.contact-name').textContent.toLowerCase();
+      const ramal = row.querySelector('.ramal').textContent;
+      const direct = row.querySelector('.direct') ? row.querySelector('.direct').textContent.toLowerCase() : '';
+      const match = name.includes(q) || ramal.includes(q) || direct.includes(q) || dept.includes(q);
+      row.classList.toggle('hidden', !match);
+      if (match) anyVisible = true;
+    });
+    card.classList.toggle('hidden', !anyVisible);
+    if (anyVisible && dept.includes(q)) rows.forEach(r => r.classList.remove('hidden'));
+  });
+}
+</script>
+</body>
+</html>
