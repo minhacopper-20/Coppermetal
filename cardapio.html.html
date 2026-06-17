@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cardápio Junho 2026 — Coppermetal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --copper: #c0392b;
+    --copper-light: #e05a4a;
+    --copper-dark: #922b21;
+    --cream: #fdf5f5;
+    --warm-white: #fff8f8;
+    --charcoal: #2c1616;
+    --mid: #7a4040;
+    --soft: #f0d6d6;
+    --green: #4a7c59;
+    --green-light: #edf5f0;
+    --orange: #e07b39;
+    --orange-light: #fdf0e6;
+    --purple: #7c5cbf;
+    --purple-light: #f0ecfa;
+    --shadow: 0 4px 24px rgba(44,16,16,0.10);
+    --shadow-lg: 0 8px 40px rgba(44,16,16,0.16);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    min-height: 100vh;
+  }
+  .loader {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 0.6s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  header {
+    background: linear-gradient(135deg, var(--copper-dark) 0%, var(--copper) 60%, var(--copper-light) 100%);
+    padding: 28px 40px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-lg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .header-left h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    color: #fff;
+    letter-spacing: -0.5px;
+  }
+  .header-left p {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.82rem;
+    font-weight: 300;
+    margin-top: 2px;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .today-badge {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .btn-rh {
+    background: #fff;
+    color: var(--copper-dark);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-rh:hover { background: var(--soft); transform: translateY(-1px); }
+  .tabs-bar {
+    background: var(--warm-white);
+    border-bottom: 2px solid var(--soft);
+    padding: 0 40px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 14px 22px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 500;
+    color: var(--mid);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    margin-bottom: -2px;
+  }
+  .tab-btn:hover { color: var(--copper); }
+  .tab-btn.active {
+    color: var(--copper-dark);
+    border-bottom-color: var(--copper);
+    font-weight: 600;
+  }
+  .tab-btn.today-tab { color: var(--copper); }
+  .tab-btn.today-tab.active { color: var(--copper-dark); }
+  .tab-btn.past-day { opacity: 0.5; }
+  main {
+    max-width: 900px;
+    margin: 36px auto;
+    padding: 0 24px 60px;
+  }
+  .nome-section {
+    background: var(--warm-white);
+    border: 1.5px solid var(--soft);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: var(--shadow);
+    flex-wrap: wrap;
+  }
+  .nome-section label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--mid);
+    white-space: nowrap;
+  }
+  .nome-input {
+    flex: 1;
+    border: 1.5px solid var(--soft);
+    border-radius: 10px;
+    padding: 9px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--charcoal);
+    background: #fff;
+    outline: none;
+    min-width: 200px;
+  }
+  .nome-input:focus { border-color: var(--copper-light); }
+  .day-panel { display: none; }
+  .day-panel.active { display: block; }
+  .day-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .day-card-header {
+    background: linear-gradient(100deg, var(--copper) 0%, var(--copper-light) 100%);
+    padding: 22px 28px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .day-card-header .date-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #fff;
+    line-height: 1;
+  }
+  .day-card-header .date-num {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.78rem;
+    margin-top: 4px;
+  }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+  }
+  .menu-row { display: contents; }
+  .menu-row > .label-cell {
+    background: var(--cream);
+    padding: 14px 18px 14px 28px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--mid);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--soft);
+    display: flex;
+    align-items: center;
+  }
+  .menu-row > .value-cell {
+    padding: 14px 28px;
+    font-size: 0.92rem;
+    color: var(--charcoal);
+    border-bottom: 1px solid var(--soft);
+  }
+  .menu-row:last-child > .label-cell,
+  .menu-row:last-child > .value-cell { border-bottom: none; }
+  .choice-section {
+    padding: 26px 28px 28px;
+    border-top: 2px solid var(--soft);
+    background: var(--warm-white);
+  }
+  .choice-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--mid);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .choice-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .choice-card {
+    border: 2px solid var(--soft);
+    border-radius: 14px;
+    padding: 18px 14px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.22s;
+    background: #fff;
+    position: relative;
+  }
+  .choice-card.disabled-card {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .choice-card:hover:not(.disabled-card) {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }
+  .choice-card.selected { transform: translateY(-3px) scale(1.03); box-shadow: var(--shadow-lg); }
+  .choice-card.p-card { --c: var(--green); --cl: var(--green-light); }
+  .choice-card.o-card { --c: var(--orange); --cl: var(--orange-light); }
+  .choice-card.ovo-card { --c: var(--purple); --cl: var(--purple-light); }
+  .choice-card.selected { border-color: var(--c); background: var(--cl); }
+  .choice-letter {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--soft);
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--mid);
+  }
+  .choice-card.selected .choice-letter { background: var(--c); color: #fff; }
+  .choice-name { font-size: 0.8rem; font-weight: 700; margin-bottom: 4px; }
+  .choice-prato { font-size: 0.78rem; font-style: italic; margin-top: 6px; color: var(--mid); }
+  .check-icon {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--c);
+    color: #fff;
+    font-size: 0.7rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .choice-card.selected .check-icon { display: flex; }
+  .btn-confirm {
+    margin-top: 18px;
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, var(--copper-dark), var(--copper));
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-confirm:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+  .btn-confirm:disabled { background: var(--soft); color: var(--mid); cursor: not-allowed; }
+  .confirmed-msg {
+    display: none;
+    margin-top: 14px;
+    background: var(--green-light);
+    border: 1.5px solid var(--green);
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-size: 0.85rem;
+    color: var(--green);
+    font-weight: 600;
+    text-align: center;
+  }
+  .confirmed-msg.show { display: block; }
+  .past-warning {
+    background: var(--soft);
+    border-radius: 12px;
+    padding: 12px 18px;
+    margin-top: 14px;
+    font-size: 0.8rem;
+    color: var(--mid);
+    text-align: center;
+  }
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(44,36,22,0.55);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #fff;
+    border-radius: 22px;
+    width: 90%;
+    max-width: 760px;
+    max-height: 85vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 80px rgba(44,36,22,0.25);
+  }
+  .modal-header {
+    background: linear-gradient(135deg, var(--copper-dark), var(--copper));
+    padding: 22px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-header h2 { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.3rem; }
+  .btn-close {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: #fff;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+  .modal-body {
+    overflow-y: auto;
+    flex: 1;
+    padding: 24px 28px;
+  }
+  .rh-actions { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  .btn-export { background: var(--copper); color: #fff; border: none; border-radius: 10px; padding: 9px 18px; cursor: pointer; font-weight: 600; }
+  .btn-clear { background: var(--soft); color: var(--mid); border: none; border-radius: 10px; padding: 9px 18px; cursor: pointer; font-weight: 600; }
+  .rh-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .rh-table th { background: var(--cream); padding: 10px 14px; text-align: left; border-bottom: 2px solid var(--soft); }
+  .rh-table td { padding: 11px 14px; border-bottom: 1px solid var(--soft); }
+  .badge-p { background: var(--green-light); color: var(--green); border-radius: 6px; padding: 3px 10px; font-weight: 700; font-size: 0.78rem; display: inline-block; }
+  .badge-o { background: var(--orange-light); color: var(--orange); border-radius: 6px; padding: 3px 10px; font-weight: 700; font-size: 0.78rem; display: inline-block; }
+  .badge-ovo { background: var(--purple-light); color: var(--purple); border-radius: 6px; padding: 3px 10px; font-weight: 700; font-size: 0.78rem; display: inline-block; }
+  .empty-rh { text-align: center; padding: 40px; color: var(--mid); }
+  .rh-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+  .stat-card { border-radius: 12px; padding: 14px 18px; text-align: center; }
+  .stat-card.sp { background: var(--green-light); }
+  .stat-card.so { background: var(--orange-light); }
+  .stat-card.sovo { background: var(--purple-light); }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; }
+  .stat-card.sp .stat-num { color: var(--green); }
+  .stat-card.so .stat-num { color: var(--orange); }
+  .stat-card.sovo .stat-num { color: var(--purple); }
+  .stat-label { font-size: 0.74rem; font-weight: 600; margin-top: 4px; }
+  .view-toggle { display: flex; gap: 6px; background: var(--soft); border-radius: 10px; padding: 4px; margin-bottom: 18px; }
+  .view-btn { flex: 1; border: none; background: none; border-radius: 7px; padding: 7px 12px; font-weight: 600; color: var(--mid); cursor: pointer; }
+  .view-btn.active { background: #fff; color: var(--copper-dark); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .day-breakdown { display: flex; flex-direction: column; gap: 10px; }
+  .day-row { background: #fff; border: 1.5px solid var(--soft); border-radius: 12px; overflow: hidden; }
+  .day-row-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: var(--cream); cursor: pointer; flex-wrap: wrap; gap: 10px; }
+  .day-row-title { font-weight: 700; font-size: 0.85rem; }
+  .chevron { transition: transform 0.2s; }
+  .day-row.open .chevron { transform: rotate(180deg); }
+  .day-row-body { display: none; padding: 10px 16px 14px; border-top: 1px solid var(--soft); }
+  .day-row-body.open { display: block; }
+  .day-row-body table { width: 100%; border-collapse: collapse; }
+  .day-row-body td { padding: 6px 8px; border-bottom: 1px solid var(--soft); }
+  @media (max-width: 600px) {
+    header { padding: 18px 20px; }
+    .header-left h1 { font-size: 1.3rem; }
+    .tabs-bar { padding: 0 16px; }
+    .menu-grid { grid-template-columns: 100px 1fr; }
+    .choice-cards { grid-template-columns: 1fr; }
+    .choice-card { text-align: left; display: flex; align-items: center; gap: 14px; }
+    .choice-letter { margin: 0; }
+    .choice-card .choice-prato { margin-top: 0; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-left">
+    <h1>🍽 Cardápio de Junho</h1>
+    <p>Coppermetal · 2026 · Nutricionista Milena Viana CRN3 64452</p>
+  </div>
+  <div class="header-right">
+    <span class="today-badge" id="todayBadge">—</span>
+    <button class="btn-rh" onclick="openRH()">📋 Painel RH</button>
+  </div>
+</header>
+<div class="tabs-bar" id="tabsBar"></div>
+<main>
+  <div class="nome-section">
+    <label>👤 Seu nome:</label>
+    <input class="nome-input" id="nomeInput" type="text" placeholder="Digite seu nome completo para registrar sua escolha...">
+  </div>
+  <div id="panelsContainer"></div>
+</main>
+<div class="modal-overlay" id="rhModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div><h2>📋 Painel RH — Junho 2026</h2></div>
+      <button class="btn-close" onclick="closeRH()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="rh-stats">
+        <div class="stat-card sp"><div class="stat-num" id="statP">0</div><div class="stat-label">Principal (P)</div></div>
+        <div class="stat-card so"><div class="stat-num" id="statO">0</div><div class="stat-label">Opção (O)</div></div>
+        <div class="stat-card sovo"><div class="stat-num" id="statOvo">0</div><div class="stat-label">Ovo</div></div>
+      </div>
+      <div class="view-toggle">
+        <button class="view-btn active" onclick="setView('dia')">📅 Por dia</button>
+        <button class="view-btn" onclick="setView('lista')">📋 Lista geral</button>
+      </div>
+      <div id="rhViewDia"></div>
+      <div id="rhViewLista" style="display:none"></div>
+      <div class="rh-actions">
+        <button class="btn-export" onclick="exportCSV()">⬇ Exportar CSV</button>
+        <button class="btn-clear" onclick="clearAll()">🗑 Limpar dados</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzYBLG7rbJSV362HoDWlOBbwCu5H4CE_PyOd92uYw7pqPwcrgNVTxDyAya1uiW_n1wi/exec";
+
+// ===================== CARDAPIO JUNHO 2026 =====================
+const cardapio = {
+  "2026-06-01": { label:"Segunda-feira", date:"01/06", principal:"Carne Moída com Batata", opcao:"Strogonoff de frango", base:"Arroz e Feijão Carioca", salada:"Repolho Roxo, couve e cenoura ralada", guarnicao:"Nhoque com Molho sugo e batata palha", sobremesa:"Tangerina", suco:"Acerola" },
+  "2026-06-02": { label:"Terça-feira", date:"02/06", principal:"Frango grelhado ao molho de ervas", opcao:"Picadinho", base:"Arroz e Feijão Preto", salada:"Rúcula e Pepino com gergelim", guarnicao:"Polenta cremosa", sobremesa:"Gelatina", suco:"Manga" },
+  "2026-06-03": { label:"Quarta-feira", date:"03/06", principal:"Costela com Mandioca", opcao:"Bisteca", base:"Arroz e Feijão Carioca", salada:"Alface, Tomate e Cebola", guarnicao:"Maionese com Ovos", sobremesa:"Caqui", suco:"Maracujá" },
+  "2026-06-04": { label:"Quinta-feira", date:"04/06", principal:"🔴 FERIADO 🔴", opcao:"🔴 FERIADO 🔴", base:"🔴 FERIADO 🔴", salada:"🔴 FERIADO 🔴", guarnicao:"🔴 FERIADO 🔴", sobremesa:"🔴 FERIADO 🔴", suco:"🔴 FERIADO 🔴", isHoliday: true },
+  "2026-06-05": { label:"Sexta-feira", date:"05/06", principal:"📅 EMENDA 📅", opcao:"📅 EMENDA 📅", base:"📅 EMENDA 📅", salada:"📅 EMENDA 📅", guarnicao:"📅 EMENDA 📅", sobremesa:"📅 EMENDA 📅", suco:"📅 EMENDA 📅", isHoliday: true },
+  "2026-06-08": { label:"Segunda-feira", date:"08/06", principal:"Frango Empanado", opcao:"Carne assada com cebola", base:"Arroz e Feijão Carioca", salada:"Acelga, Beterraba e abacaxi em cubos", guarnicao:"Arroz bíro-bíro", sobremesa:"Banana", suco:"Goiaba" },
+  "2026-06-09": { label:"Terça-feira", date:"09/06", principal:"Bife a Rolê", opcao:"Isca de frango empanado", base:"Arroz e Feijão Carioca", salada:"Alface, tomate e cenoura", guarnicao:"Batata Doce assada com Alecrim", sobremesa:"Curau", suco:"Uva" },
+  "2026-06-10": { label:"Quarta-feira", date:"10/06", principal:"Parmegiana de Carne", opcao:"Costelinha barbecue", base:"Arroz e Feijão Carioca", salada:"Agrião e tabule", guarnicao:"Batata Frita", sobremesa:"Maçã", suco:"Maracujá" },
+  "2026-06-11": { label:"Quinta-feira", date:"11/06", principal:"Pernil assado", opcao:"Frango cozido com Quiabo", base:"Arroz e Feijão Carioca", salada:"Mix de folhas, tomate e pepino", guarnicao:"Mandioca frita", sobremesa:"Gelatina", suco:"Caju" },
+  "2026-06-12": { label:"Sexta-feira", date:"12/06", principal:"Moqueca de peixe", opcao:"Omelete de legumes", base:"Arroz e Feijão Carioca", salada:"Rúcula e Beterraba ralada", guarnicao:"Escarola refogada", sobremesa:"Bolo de milho cremoso", suco:"Acerola" },
+  "2026-06-15": { label:"Segunda-feira", date:"15/06", principal:"Frango caipira com milho", opcao:"Picadinho", base:"Arroz e Feijão Carioca", salada:"Rúcula, Pepino e Cenoura Ralada", guarnicao:"Feijão tropeiro", sobremesa:"Laranja", suco:"Maracujá" },
+  "2026-06-16": { label:"Terça-feira", date:"16/06", principal:"Panqueca de ricota c/ espinafre", opcao:"Linguiça Toscana acebolada", base:"Arroz e Feijão Carioca", salada:"Alface, Repolho e Beterraba ralada", guarnicao:"Legumes sauté", sobremesa:"Romeu e julieta", suco:"Caju" },
+  "2026-06-17": { label:"Quarta-feira", date:"17/06", principal:"Frango grelhado", opcao:"Escondidinho de carne seca", base:"Arroz e Feijão Carioca", salada:"Alface crespa e salada de quinoa", guarnicao:"Farofa de cuzcuz", sobremesa:"Melão", suco:"Maracujá" },
+  "2026-06-18": { label:"Quinta-feira", date:"18/06", principal:"Fraldinha assada", opcao:"Strogonoff de frango", base:"Arroz e Feijão Carioca", salada:"Alface lisa e seleta", guarnicao:"Creme de milho e batata palha", sobremesa:"Mexerica", suco:"Goiaba" },
+  "2026-06-19": { label:"Sexta-feira", date:"19/06", principal:"Isca de peixe empanado", opcao:"Bife grelhado ao molho de cogumelos", base:"Arroz e Feijão Carioca", salada:"Mix de folhas c/ manga em cubos", guarnicao:"Abóbora assada com casca e ervas", sobremesa:"Canjica com farelo de paçoca", suco:"Uva" },
+  "2026-06-22": { label:"Segunda-feira", date:"22/06", principal:"Vaca atolada", opcao:"Sobrecoxa assada", base:"Arroz e Feijão Carioca", salada:"Alface lisa, Chuchu e Cebola Roxa", guarnicao:"Brócolis refogado", sobremesa:"Abacaxi", suco:"Acerola" },
+  "2026-06-23": { label:"Terça-feira", date:"23/06", principal:"Frango Xadrez", opcao:"Iscas de Carne", base:"Arroz e Feijão Carioca", salada:"Acelga, Vagem e cenoura palito", guarnicao:"Yakissoba de Legumes", sobremesa:"Gelatina", suco:"Manga" },
+  "2026-06-24": { label:"Quarta-feira", date:"24/06", principal:"Feijoada", opcao:"Ovo", base:"Arroz e Feijão Preto", salada:"Vinagrete", guarnicao:"Couve, Farofa e Torresmo", sobremesa:"Pêra", suco:"Limão" },
+  "2026-06-25": { label:"Quinta-feira", date:"25/06", principal:"Bife ao Molho Madeira", opcao:"Omelete caprese", base:"Arroz e Feijão Carioca", salada:"Alface, milho, tomate e azeitona", guarnicao:"Farofa de ovos", sobremesa:"Caqui", suco:"Maracujá" },
+  "2026-06-26": { label:"Sexta-feira", date:"26/06", principal:"Frango ao curry", opcao:"Tulipa Frita", base:"Arroz e Feijão Carioca", salada:"Mix de Folhas e Caponata de berinjela", guarnicao:"Purê de mandioquinha", sobremesa:"Arroz doce com coco queimado", suco:"Caju" },
+  "2026-06-29": { label:"Segunda-feira", date:"29/06", principal:"Maminha Assada com Alho", opcao:"Iscas de Frango Acebolada", base:"Arroz e Feijão Carioca", salada:"Alface e tomate rodela", guarnicao:"Baião de dois", sobremesa:"Banana", suco:"Goiaba" },
+  "2026-06-30": { label:"Terça-feira", date:"30/06", principal:"Almôndegas ao sugo", opcao:"Isca de fígado acebolado", base:"Arroz e Feijão Carioca", salada:"Rúcula e Salada de Chuchu com Ovos", guarnicao:"Macarrão Alho e Óleo", sobremesa:"Uva com doce de leite", suco:"Manga" }
+};
+
+let pendingChoices = {};
+let currentView = 'dia';
+let allChoicesCache = null;
+
+function getTodayKey() {
+  const d = new Date();
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function isPastDate(dateKey) { return dateKey < getTodayKey(); }
+function escapeHTML(str) { if (!str) return ''; return String(str).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'})[m]); }
+function getPratoLabel(key, opcao) { const d = cardapio[key]; if (!d) return ''; if (opcao === 'P') return d.principal; if (opcao === 'O') return d.opcao; return 'Ovo (disponível todos os dias)'; }
+
+async function fetchJSONP(url) {
+  return new Promise((resolve, reject) => {
+    const cbName = '_gs_cb_' + Date.now();
+    const script = document.createElement('script');
+    const timer = setTimeout(() => { cleanup(); reject(new Error('timeout')); }, 8000);
+    function cleanup() { clearTimeout(timer); delete window[cbName]; if (script.parentNode) script.parentNode.removeChild(script); }
+    window[cbName] = (data) => { cleanup(); resolve(data); };
+    script.onerror = () => { cleanup(); reject(new Error('script error')); };
+    script.src = url + '?callback=' + cbName;
+    document.head.appendChild(script);
+  });
+}
+
+function normalizeDia(val) { if (!val) return ''; const s = String(val); if (s.length > 10 && s.includes('T')) return s.substring(0, 10); if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s; return s; }
+
+async function loadEscolhas() {
+  try {
+    const data = await fetchJSONP(APPS_SCRIPT_URL);
+    const arr = Array.isArray(data) ? data : [];
+    allChoicesCache = arr.map(e => ({ nome: e.nome || '', dia: normalizeDia(e.dia || ''), opcao: e.opcao || '', prato: e.prato || '', ts: e.ts || '' })).filter(e => e.nome && e.dia && e.opcao);
+    return allChoicesCache;
+  } catch(err) { console.warn(err); return allChoicesCache || []; }
+}
+
+async function saveEscolha(nome, dia, opcao, prato) {
+  allChoicesCache = null;
+  const d = cardapio[dia];
+  const payload = { nome, dia, diaSemana: d ? d.label : '', data: d ? d.date : dia, opcao, prato, ts: new Date().toLocaleString('pt-BR') };
+  try { await fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body: JSON.stringify(payload) }); } catch(err) { console.error(err); }
+}
+
+const keys = Object.keys(cardapio).sort();
+
+function buildUI() {
+  const todayKey = getTodayKey();
+  const tabsBar = document.getElementById('tabsBar');
+  const container = document.getElementById('panelsContainer');
+  const d0 = cardapio[todayKey];
+  document.getElementById('todayBadge').textContent = d0 ? `Hoje: ${d0.date}` : 'Hoje: folga';
+
+  keys.forEach((key, i) => {
+    const d = cardapio[key];
+    const isActive = key === todayKey || (i === 0 && !cardapio[todayKey]);
+    const isPast = isPastDate(key);
+
+    const tab = document.createElement('button');
+    tab.className = `tab-btn ${isActive ? 'active' : ''} ${key === todayKey ? 'today-tab' : ''} ${isPast ? 'past-day' : ''}`;
+    tab.textContent = d.date;
+    tab.dataset.key = key;
+    tab.addEventListener('click', () => switchTab(key));
+    tabsBar.appendChild(tab);
+
+    const panel = document.createElement('div');
+    panel.className = `day-panel ${isActive ? 'active' : ''}`;
+    panel.id = `panel-${key}`;
+
+    if (d.isHoliday) {
+      panel.innerHTML = `<div class="day-card"><div class="day-card-header"><div><div class="date-name">${d.label}</div><div class="date-num">${d.date} · Junho 2026</div></div></div><div class="choice-section" style="text-align:center; padding:40px;"><div class="choice-title">📌 ${d.principal}</div><div class="past-warning">Não há serviço de alimentação neste dia.</div></div></div>`;
+    } else {
+      const menuRows = [
+        ['PRINCIPAL', d.principal], ['OPÇÃO', d.opcao], ['PRATO BASE', d.base],
+        ['SALADA', d.salada], ['GUARNIÇÃO', d.guarnicao], ['SOBREMESA', d.sobremesa], ['SUCO', d.suco]
+      ].map(pair => `<div class="menu-row"><div class="label-cell">${pair[0]}</div><div class="value-cell">${escapeHTML(pair[1])}</div></div>`).join('');
+
+      panel.innerHTML = `<div class="day-card"><div class="day-card-header"><div><div class="date-name">${d.label}</div><div class="date-num">${d.date} · Junho 2026</div></div></div><div class="menu-grid">${menuRows}</div><div class="choice-section"><div class="choice-title">Sua escolha para hoje</div><div class="choice-cards"><div class="choice-card p-card" data-opcao="P"><div class="check-icon">✓</div><div class="choice-letter">P</div><div class="choice-name">Principal</div><div class="choice-prato">${escapeHTML(d.principal)}</div></div><div class="choice-card o-card" data-opcao="O"><div class="check-icon">✓</div><div class="choice-letter">O</div><div class="choice-name">Opção</div><div class="choice-prato">${escapeHTML(d.opcao)}</div></div><div class="choice-card ovo-card" data-opcao="OVO"><div class="check-icon">✓</div><div class="choice-letter">🥚</div><div class="choice-name">Ovo</div><div class="choice-prato">Ovo (disponível todos os dias)</div></div></div><button class="btn-confirm" disabled>Confirmar Escolha</button><div class="confirmed-msg"></div>${isPast ? '<div class="past-warning">⚠️ Este dia já passou. Você não pode mais fazer ou alterar sua escolha.</div>' : ''}</div></div>`;
+
+      const pCard = panel.querySelector('.p-card');
+      const oCard = panel.querySelector('.o-card');
+      const ovoCard = panel.querySelector('.ovo-card');
+      pCard.addEventListener('click', () => selectChoice(key, 'P'));
+      oCard.addEventListener('click', () => selectChoice(key, 'O'));
+      ovoCard.addEventListener('click', () => selectChoice(key, 'OVO'));
+      panel.querySelector('.btn-confirm').addEventListener('click', () => confirmChoice(key));
+    }
+    container.appendChild(panel);
+  });
+  if (document.querySelector('[data-key="' + todayKey + '"]')) document.querySelector('[data-key="' + todayKey + '"]').scrollIntoView({ block: 'nearest', inline: 'center' });
+}
+
+function switchTab(key) {
+  document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+  const tab = document.querySelector(`[data-key="${key}"]`);
+  if (tab) tab.classList.add('active');
+  const panel = document.getElementById(`panel-${key}`);
+  if (panel) panel.classList.add('active');
+}
+
+function selectChoice(key, opcao) {
+  const panel = document.getElementById(`panel-${key}`);
+  if (!panel) return;
+  const msgEl = panel.querySelector('.confirmed-msg');
+  if (msgEl && msgEl.classList.contains('show')) return;
+  if (isPastDate(key)) { alert('Não é possível alterar escolhas de dias passados.'); return; }
+  panel.querySelectorAll('.choice-card').forEach(c => c.classList.remove('selected'));
+  const card = panel.querySelector(`.choice-card[data-opcao="${opcao}"]`);
+  if (card) card.classList.add('selected');
+  pendingChoices[key] = opcao;
+  const btn = panel.querySelector('.btn-confirm');
+  if (btn) btn.disabled = false;
+}
+
+async function confirmChoice(key) {
+  const nome = document.getElementById('nomeInput').value.trim();
+  if (!nome) { alert('Por favor, informe seu nome antes de confirmar.'); document.getElementById('nomeInput').focus(); return; }
+  localStorage.setItem('cardapio_nome', nome);
+  const opcao = pendingChoices[key];
+  if (!opcao) return;
+  if (isPastDate(key)) { alert('Não é possível confirmar escolha para dias passados.'); return; }
+  const panel = document.getElementById(`panel-${key}`);
+  const btn = panel.querySelector('.btn-confirm');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loader"></span> Salvando...';
+  await saveEscolha(nome, key, opcao, getPratoLabel(key, opcao));
+  const msgEl = panel.querySelector('.confirmed-msg');
+  msgEl.className = 'confirmed-msg show';
+  msgEl.innerHTML = `✓ Escolha confirmada: <strong>${opcao === 'P' ? 'Principal' : (opcao === 'O' ? 'Opção' : 'Ovo')}</strong> — ${escapeHTML(getPratoLabel(key, opcao))}`;
+  btn.innerHTML = 'Confirmar Escolha';
+}
+
+async function restoreChoices() {
+  const nome = document.getElementById('nomeInput').value.trim();
+  if (!nome) return;
+  keys.forEach(key => {
+    const panel = document.getElementById(`panel-${key}`);
+    if (!panel || cardapio[key].isHoliday) return;
+    panel.querySelectorAll('.choice-card').forEach(c => c.classList.remove('selected'));
+    const msgEl = panel.querySelector('.confirmed-msg');
+    if (msgEl) { msgEl.className = 'confirmed-msg'; msgEl.innerHTML = ''; }
+    const btn = panel.querySelector('.btn-confirm');
+    if (btn) btn.disabled = true;
+  });
+  const all = await loadEscolhas();
+  all.forEach(e => {
+    if (e.nome.toLowerCase() !== nome.toLowerCase()) return;
+    const panel = document.getElementById(`panel-${e.dia}`);
+    if (!panel) return;
+    const card = panel.querySelector(`.choice-card[data-opcao="${e.opcao}"]`);
+    if (!card) return;
+    panel.querySelectorAll('.choice-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    const msgEl = panel.querySelector('.confirmed-msg');
+    if (msgEl) { msgEl.className = 'confirmed-msg show'; msgEl.innerHTML = `✓ Escolha confirmada: <strong>${e.opcao === 'P' ? 'Principal' : (e.opcao === 'O' ? 'Opção' : 'Ovo')}</strong> — ${escapeHTML(getPratoLabel(e.dia, e.opcao))}`; }
+    const btn = panel.querySelector('.btn-confirm');
+    if (btn) btn.disabled = true;
+  });
+}
+
+function openRH() { document.getElementById('rhModal').classList.add('open'); renderRH(); }
+function closeRH() { document.getElementById('rhModal').classList.remove('open'); }
+
+async function renderRH() {
+  document.getElementById('rhViewDia').innerHTML = '<div class="empty-rh">Carregando...</div>';
+  const all = await loadEscolhas();
+  const sorted = [...all].sort((a,b) => a.dia.localeCompare(b.dia) || a.nome.localeCompare(b.nome));
+  document.getElementById('statP').textContent = all.filter(e => e.opcao === 'P').length;
+  document.getElementById('statO').textContent = all.filter(e => e.opcao === 'O').length;
+  document.getElementById('statOvo').textContent = all.filter(e => e.opcao === 'OVO').length;
+  if (!sorted.length) {
+    document.getElementById('rhViewDia').innerHTML = '<div class="empty-rh">Nenhuma escolha registrada ainda.</div>';
+    document.getElementById('rhViewLista').innerHTML = '<div class="empty-rh">Nenhuma escolha registrada ainda.</div>';
+    return;
+  }
+  const byDay = {};
+  sorted.forEach(e => { if (!byDay[e.dia]) byDay[e.dia] = []; byDay[e.dia].push(e); });
+  const dayHTML = Object.keys(byDay).sort().map(dia => {
+    const entries = byDay[dia];
+    const d = cardapio[dia];
+    const dayLabel = d ? `${d.label} · ${d.date}` : dia;
+    const cp = entries.filter(e => e.opcao === 'P').length;
+    const co = entries.filter(e => e.opcao === 'O').length;
+    const covo = entries.filter(e => e.opcao === 'OVO').length;
+    const maxV = Math.max(cp, co, covo, 1);
+    const pct = v => Math.round(v / maxV * 100);
+    const bodyRows = entries.map(e => `<tr><td class="col-nome">${escapeHTML(e.nome)}</td><td>${e.opcao === 'P' ? '<span class="badge-p">Principal</span>' : (e.opcao === 'O' ? '<span class="badge-o">Opção</span>' : '<span class="badge-ovo">Ovo</span>')}</td><td class="col-prato">${escapeHTML(e.prato || 'Ovo')}</td></tr>`).join('');
+    return `<div class="day-row" data-dia="${dia}"><div class="day-row-header" onclick="toggleDay('${dia}')"><span class="day-row-title">${dayLabel}</span><div class="day-bars"><div class="bar-wrap"><span class="bar-label">P</span><div class="bar-track"><div class="bar-fill bp" style="width:${pct(cp)}%"></div></div><span class="bar-count">${cp}</span></div><div class="bar-wrap"><span class="bar-label">O</span><div class="bar-track"><div class="bar-fill bo" style="width:${pct(co)}%"></div></div><span class="bar-count">${co}</span></div><div class="bar-wrap"><span class="bar-label">OVO</span><div class="bar-track"><div class="bar-fill bovo" style="width:${pct(covo)}%"></div></div><span class="bar-count">${covo}</span></div></div><span class="day-row-total">${entries.length} registros</span><span class="chevron">▼</span></div><div class="day-row-body" id="drb-${dia}"><table><tbody>${bodyRows}</tbody></table></div></div>`;
+  }).join('');
+  document.getElementById('rhViewDia').innerHTML = `<div class="day-breakdown">${dayHTML}</div>`;
+  const listRows = sorted.map(e => {
+    const d = cardapio[e.dia];
+    return `<tr><td>${escapeHTML(e.nome)}</td><td>${d ? `${d.label} ${d.date}` : e.dia}</td><td>${e.opcao === 'P' ? '<span class="badge-p">Principal</span>' : (e.opcao === 'O' ? '<span class="badge-o">Opção</span>' : '<span class="badge-ovo">Ovo</span>')}</td><td>${escapeHTML(e.prato || 'Ovo')}</td><td style="font-size:0.75rem">${escapeHTML(e.ts)}</td></tr>`;
+  }).join('');
+  document.getElementById('rhViewLista').innerHTML = `<table class="rh-table"><thead><tr><th>Funcionário</th><th>Dia</th><th>Opção</th><th>Prato</th><th>Registrado em</th></tr></thead><tbody>${listRows}</tbody></table>`;
+}
+
+function toggleDay(dia) { const row = document.querySelector(`.day-row[data-dia="${dia}"]`); if (row) { row.classList.toggle('open'); const body = row.querySelector('.day-row-body'); if (body) body.classList.toggle('open'); } }
+function setView(v) { currentView = v; document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active')); document.getElementById(v === 'dia' ? 'vbDia' : 'vbLista').classList.add('active'); document.getElementById('rhViewDia').style.display = v === 'dia' ? 'block' : 'none'; document.getElementById('rhViewLista').style.display = v === 'lista' ? 'block' : 'none'; }
+async function exportCSV() { const all = await loadEscolhas(); if (!all.length) { alert('Nenhum dado para exportar.'); return; } const sorted = [...all].sort((a,b) => a.dia.localeCompare(b.dia) || a.nome.localeCompare(b.nome)); const rows = sorted.map(e => { const d = cardapio[e.dia]; return `"${e.nome}","${d ? d.label : ''}","${d ? d.date : e.dia}","${e.opcao}","${e.prato || 'Ovo'}","${e.ts}"`; }); const csv = "Funcionario,Dia da Semana,Data,Opcao,Prato,Registrado em\n" + rows.join("\n"); const blob = new Blob(["\uFEFF" + csv], {type: 'text/csv;charset=utf-8;'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'cardapio_junho_2026.csv'; a.click(); }
+function clearAll() { alert('Para limpar os dados, acesse a planilha Google Sheets e apague as linhas na aba "Respostas".'); renderRH(); }
+
+let nomeTimer = null;
+document.addEventListener('DOMContentLoaded', () => {
+  buildUI();
+  const nomeSalvo = localStorage.getItem('cardapio_nome');
+  if (nomeSalvo) { document.getElementById('nomeInput').value = nomeSalvo; restoreChoices(); }
+  document.getElementById('nomeInput').addEventListener('input', () => { clearTimeout(nomeTimer); nomeTimer = setTimeout(restoreChoices, 700); });
+});
+</script>
+</body>
+</html>
